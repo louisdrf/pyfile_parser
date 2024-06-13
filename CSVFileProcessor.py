@@ -1,5 +1,6 @@
 import csv
 from file_helper import getDataType
+from getDataStatistics import displayNumberStatistics
 class CSVFileProcessor:
     def __init__(self, file):
         self.file = file
@@ -10,8 +11,13 @@ class CSVFileProcessor:
         
         self.setReader()
         self.setColumnsDataType()
-        print(self.columnsType)
-        
+        self.displayFileStatistics()
+    
+    def displayFileStatistics(self):
+        for columnName, columnType in  self.columnsType.items():
+            if columnType is int:
+                displayNumberStatistics(self.getColumnDataByName(columnName))     
+            
         
     def setReader(self):
         self.file.seek(0)
