@@ -16,6 +16,7 @@ class CSVFileProcessor:
     def displayFileStatistics(self):
         for columnName, columnType in  self.columnsType.items():
             if columnType is int:
+                print(columnName)
                 displayNumberStatistics(self.getColumnDataByName(columnName))     
             
         
