@@ -17,8 +17,7 @@ def parseFile(fileName):
     fileType = getFileType(fileName)
     if fileType == 'csv':
         CSVDataProcessor = getCSVDataProcessor(fileName)
-        columnName = input('nom de col : ')
-        print(CSVDataProcessor.getColumnDataByName(columnName))
+        
     #elif fileType == 'json':
         #parseJSON(fileName)
         

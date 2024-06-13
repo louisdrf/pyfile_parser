@@ -9,3 +9,9 @@ def getFileType(fileName):
     if fileType not in ['csv', 'json']:
         raise UnsupportedFileTypeError(f"Le type de fichier '{fileType}' n'est pas pris en charge.")
     return fileType
+
+def getDataType(value):
+    if value.isdigit():
+        return int
+    elif value.lower() in ['true', 'false']:
+        return bool

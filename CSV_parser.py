@@ -4,7 +4,6 @@ def getCSVDataProcessor(fileName):
     try:
         with open(fileName, 'r', newline='', encoding='utf-8') as csvfile:
             file = CSVFileProcessor(csvfile)
-            file.setReader()
             print(file.columns)
         return file
     
