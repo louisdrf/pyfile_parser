@@ -8,8 +8,11 @@ class CSVFile:
         self.content = None
         
         
-    def setCSVReader(self):
+    def setReader(self):
+        self.file.seek(0)
         self.reader = csv.DictReader(self.file)
-        
-    def setColumnNames(self):
-        self.columns = list(dict(list(self.reader)[0]).keys())
+        self.content = list(self.reader)  
+        self.columns = self.reader.fieldnames
+    
+    def getColumnDataByName(self, columnName):
+        print([row[columnName] for row in self.content])

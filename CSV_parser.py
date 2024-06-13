@@ -4,10 +4,8 @@ def parseCSV(fileName):
     try:
         with open(fileName, 'r', newline='', encoding='utf-8') as csvfile:
             file = CSVFile(csvfile)
-            file.setCSVReader()
-            file.setColumnNames()
-            
-            print(file.columns)
+            file.setReader()
+            file.getColumnDataByName('pokedex_number')
         return file
     
     except FileNotFoundError:
