@@ -1,5 +1,5 @@
 from error_types import FileTypeError
-from CSV_parser import parseCSV
+from CSV_parser import getCSVDataProcessor
 from command_menu import displayCommandMenu
 from file_helper import getFileType
 
@@ -16,7 +16,9 @@ def main():
 def parseFile(fileName):
     fileType = getFileType(fileName)
     if fileType == 'csv':
-        parsedCSV = parseCSV(fileName)
+        CSVDataProcessor = getCSVDataProcessor(fileName)
+        columnName = input('nom de col : ')
+        print(CSVDataProcessor.getColumnDataByName(columnName))
     #elif fileType == 'json':
         #parseJSON(fileName)
         

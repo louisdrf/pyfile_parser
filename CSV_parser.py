@@ -1,11 +1,11 @@
-from CSVFile import CSVFile
+from CSVFileProcessor import CSVFileProcessor
 
-def parseCSV(fileName):
+def getCSVDataProcessor(fileName):
     try:
         with open(fileName, 'r', newline='', encoding='utf-8') as csvfile:
-            file = CSVFile(csvfile)
+            file = CSVFileProcessor(csvfile)
             file.setReader()
-            file.getColumnDataByName('pokedex_number')
+            print(file.columns)
         return file
     
     except FileNotFoundError:

@@ -1,6 +1,6 @@
 import csv
 
-class CSVFile:
+class CSVFileProcessor:
     def __init__(self, file):
         self.file = file
         self.reader = None
@@ -15,4 +15,7 @@ class CSVFile:
         self.columns = self.reader.fieldnames
     
     def getColumnDataByName(self, columnName):
-        print([row[columnName] for row in self.content])
+        if columnName not in self.columns:
+            raise ValueError(f"La colonne '{columnName}' n'existe pas dans le fichier.")
+        
+        return [row[columnName] for row in self.content]
