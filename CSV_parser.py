@@ -1,11 +1,15 @@
-import csv
+from CSVFile import CSVFile
 
 def parseCSV(fileName):
     try:
         with open(fileName, 'r', newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            content = [row for row in reader]
-        return content
+            file = CSVFile(csvfile)
+            file.setCSVReader()
+            file.setColumnNames()
+            
+            print(file.columns)
+        return file
+    
     except FileNotFoundError:
         print(f"Erreur : Le fichier '{fileName}' n'a pas été trouvé.")
     except IOError:
