@@ -7,16 +7,15 @@ from file_helper import getFileType
 def main():
     try:
         fileName = input("Veuillez saisir un nom de fichier à analyser : ")
-        parseFile(fileName)
-        displayCommandMenu()
+        displayCommandMenu(get_file_processor(fileName))
     except FileTypeError as e:
         print(f"Erreur : {e}")
 
 
-def parseFile(fileName):
+def get_file_processor(fileName):
     fileType = getFileType(fileName)
     if fileType == 'csv':
-        CSVDataProcessor = getCSVDataProcessor(fileName)
+        return getCSVDataProcessor(fileName)
         
     #elif fileType == 'json':
         #parseJSON(fileName)

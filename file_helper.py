@@ -37,10 +37,9 @@ def multiple_string_values_to_list(value):
     except (ValueError, SyntaxError):
         pass
     
-    if '\n' in value:
-        value = value.split('\n')
-        
-    if ',' in value:
-        value = value.split(',')
+    separators = [',' , ';', ':', '\n']
+    for sep in separators:
+        if sep in value:
+            value = value.split(sep)
 
     return value
