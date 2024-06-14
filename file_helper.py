@@ -11,12 +11,18 @@ def getFileType(file_name):
     return file_type
 
 
-def getDataType(value):
-    if is_list(value): 
+def get_data_type(column):
+    if is_list(column[0]): 
             return list 
-    elif value.isdigit():
-        return int 
-    elif value.lower() in ['true', 'false']:
+        
+    elif all(elem in {'0', '1'} for elem in column[:10]):
+        if all(elem in {'0', '1'} for elem in column):
+            return bool
+        
+    elif column[0].isdigit():
+        return int
+    
+    elif column[0].lower() in ['true', 'false']:
         return bool
 
 

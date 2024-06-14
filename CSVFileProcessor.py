@@ -1,6 +1,6 @@
 import csv
-from file_helper import getDataType
-from getDataStatistics import displayNumberStatistics
+from file_helper import get_data_type
+from getDataStatistics import displayNumberStatistics, displayBoolStatistics
 class CSVFileProcessor:
     def __init__(self, file):
         self.file = file
@@ -19,6 +19,10 @@ class CSVFileProcessor:
                 print(columnName)
                 displayNumberStatistics(self.getColumnDataByName(columnName))     
             
+            if columnType is bool:
+                print(columnName)
+                displayBoolStatistics(self.getColumnDataByName(columnName))
+            
         
     def setReader(self):
         self.file.seek(0)
@@ -31,8 +35,8 @@ class CSVFileProcessor:
         if not self.content:
             return
         for column in self.columns:
-            firstColumnValue = self.content[0][column]
-            self.columnsType[column] = getDataType(firstColumnValue)
+            col_elems = self.getColumnDataByName(column)
+            self.columnsType[column] = get_data_type(col_elems)
             
     
     def getColumnDataByName(self, columnName):
