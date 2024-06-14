@@ -10,8 +10,13 @@ def getFileType(fileName):
         raise UnsupportedFileTypeError(f"Le type de fichier '{fileType}' n'est pas pris en charge.")
     return fileType
 
-def getDataType(value):
-    if value.isdigit():
+def get_data_type(column):
+    if all(elem in {'0', '1'} for elem in column[:10]):
+        if all(elem in {'0', '1'} for elem in column):
+            return bool
+        
+    elif column[0].isdigit():
         return int
-    elif value.lower() in ['true', 'false']:
+    
+    elif column[0].lower() in ['true', 'false']:
         return bool
