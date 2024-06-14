@@ -1,5 +1,4 @@
 from error_types import NoExtensionError, UnsupportedFileTypeError
-
   
 def getFileType(file_name):
     if '.' not in file_name:
@@ -33,14 +32,15 @@ def is_list(value):
 
 
 def multiple_string_values_to_list(value):
-    if '\n' in value.lower():
+    try:
+        value = eval(value)
+    except (ValueError, SyntaxError):
+        pass
+    
+    if '\n' in value:
         value = value.split('\n')
         
-    if ',' in value.lower():
+    if ',' in value:
         value = value.split(',')
-        
-    if value.startswith("[") and value.endswith("]"):
-        value = value[1:-1]
-        value = multiple_string_values_to_list(value) # rappel avec la valeur sans crochets
-        
+
     return value
