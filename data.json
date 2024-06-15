@@ -1,5 +1,295 @@
 [
   {
+    "nom": "Garcia",
+    "prenom": "Manon",
+    "age": 21,
+    "adresse": {
+      "rue": "567 Rue de la Liberté",
+      "ville": "Bordeaux",
+      "codePostal": "33000"
+    },
+    "cours": [
+      {
+        "nom": "Mathématiques",
+        "professeur": "M. Martinez",
+        "note": 16
+      },
+      {
+        "nom": "Physique",
+        "professeur": "Mme. Sanchez",
+        "note": 14
+      }
+    ],
+    "taille": 1.65,
+    "admissible": true,
+    "moyenneNotes": 15,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "espagnol"]
+    }
+  },
+  {
+    "nom": "Lefevre",
+    "prenom": "Thomas",
+    "age": 19,
+    "adresse": {
+      "rue": "890 Avenue des Pins",
+      "ville": "Montpellier",
+      "codePostal": "34000"
+    },
+    "cours": [
+      {
+        "nom": "Chimie",
+        "professeur": "M. Lemoine",
+        "note": 13
+      },
+      {
+        "nom": "Histoire",
+        "professeur": "Mme. Dubois",
+        "note": 17
+      }
+    ],
+    "taille": 1.78,
+    "admissible": false,
+    "moyenneNotes": 15,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "anglais"]
+    }
+  },
+  {
+    "nom": "Robert",
+    "prenom": "Emma",
+    "age": 20,
+    "adresse": {
+      "rue": "321 Rue de la Paix",
+      "ville": "Toulouse",
+      "codePostal": "31000"
+    },
+    "cours": [
+      {
+        "nom": "Biologie",
+        "professeur": "Mme. Dubois",
+        "note": 18
+      },
+      {
+        "nom": "Littérature",
+        "professeur": "M. Lemoine",
+        "note": 16
+      }
+    ],
+    "taille": 1.72,
+    "admissible": true,
+    "moyenneNotes": 17,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "allemand"]
+    }
+  },
+  {
+    "nom": "Moreau",
+    "prenom": "Lucas",
+    "age": 22,
+    "adresse": {
+      "rue": "678 Boulevard des Alpes",
+      "ville": "Grenoble",
+      "codePostal": "38000"
+    },
+    "cours": [
+      {
+        "nom": "Physique",
+        "professeur": "M. Martin",
+        "note": 15
+      },
+      {
+        "nom": "Informatique",
+        "professeur": "Mme. Durand",
+        "note": 19
+      }
+    ],
+    "taille": 1.80,
+    "admissible": false,
+    "moyenneNotes": 17,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "italien"]
+    }
+  },
+  {
+    "nom": "Lemoine",
+    "prenom": "Alice",
+    "age": 23,
+    "adresse": {
+      "rue": "456 Avenue du Soleil",
+      "ville": "Nice",
+      "codePostal": "06000"
+    },
+    "cours": [
+      {
+        "nom": "Chimie",
+        "professeur": "M. Girard",
+        "note": 14
+      },
+      {
+        "nom": "Mathématiques",
+        "professeur": "Mme. Rousseau",
+        "note": 18
+      }
+    ],
+    "taille": 1.68,
+    "admissible": true,
+    "moyenneNotes": 16,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "espagnol"]
+    }
+  },
+  {
+    "nom": "Durand",
+    "prenom": "Louis",
+    "age": 21,
+    "adresse": {
+      "rue": "789 Boulevard du Lac",
+      "ville": "Strasbourg",
+      "codePostal": "67000"
+    },
+    "cours": [
+      {
+        "nom": "Physique",
+        "professeur": "Mme. Martin",
+        "note": 17
+      },
+      {
+        "nom": "Histoire",
+        "professeur": "M. Bernard",
+        "note": 15
+      }
+    ],
+    "taille": 1.76,
+    "admissible": false,
+    "moyenneNotes": 16,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "anglais"]
+    }
+  },
+  {
+    "nom": "Girard",
+    "prenom": "Chloé",
+    "age": 20,
+    "adresse": {
+      "rue": "234 Rue des Roses",
+      "ville": "Nantes",
+      "codePostal": "44000"
+    },
+    "cours": [
+      {
+        "nom": "Biologie",
+        "professeur": "Mme. Simon",
+        "note": 16
+      },
+      {
+        "nom": "Chimie",
+        "professeur": "M. Lefevre",
+        "note": 18
+      }
+    ],
+    "taille": 1.70,
+    "admissible": true,
+    "moyenneNotes": 17,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "allemand"]
+    }
+  },
+  {
+    "nom": "Sanchez",
+    "prenom": "Gabriel",
+    "age": 19,
+    "adresse": {
+      "rue": "789 Avenue de la République",
+      "ville": "Rennes",
+      "codePostal": "35000"
+    },
+    "cours": [
+      {
+        "nom": "Informatique",
+        "professeur": "M. Martinez",
+        "note": 19
+      },
+      {
+        "nom": "Physique",
+        "professeur": "Mme. Dubois",
+        "note": 15
+      }
+    ],
+    "taille": 1.82,
+    "admissible": false,
+    "moyenneNotes": 17,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "espagnol"]
+    }
+  },
+  {
+    "nom": "Martinez",
+    "prenom": "Anaïs",
+    "age": 20,
+    "adresse": {
+      "rue": "345 Avenue Victor Hugo",
+      "ville": "Lille",
+      "codePostal": "59000"
+    },
+    "cours": [
+      {
+        "nom": "Mathématiques",
+        "professeur": "Mme. Lemoine",
+        "note": 17
+      },
+      {
+        "nom": "Biologie",
+        "professeur": "M. Bernard",
+        "note": 16
+      }
+    ],
+    "taille": 1.68,
+    "admissible": true,
+    "moyenneNotes": 16.5,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "anglais"]
+    }
+  },
+  {
+    "nom": "Dubois",
+    "prenom": "Antoine",
+    "age": 22,
+    "adresse": {
+      "rue": "123 Rue des Lilas",
+      "ville": "Brest",
+      "codePostal": "29000"
+    },
+    "cours": [
+      {
+        "nom": "Histoire",
+        "professeur": "Mme. Durand",
+        "note": 15
+      },
+      {
+        "nom": "Chimie",
+        "professeur": "M. Lefevre",
+        "note": 18
+      }
+    ],
+    "taille": 1.75,
+    "admissible": false,
+    "moyenneNotes": 16.5,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "italien"]
+    }
+  },
+  {
     "nom": "Dupont",
     "prenom": "Jean",
     "age": 21,
