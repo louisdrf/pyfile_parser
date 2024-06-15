@@ -6,14 +6,14 @@ class CSVFileProcessor:
         self.file = file
         self.reader = None
         self.columns = []
-        self.columnsType = {}
+        self.columns_type = {}
         self.content = None
         
         self.setReader()
         self.setColumnsDataType()
     
     def displayFileStatistics(self):
-        for columnName, columnType in  self.columnsType.items():
+        for columnName, columnType in  self.columns_type.items():
             print(columnName)
             
             if columnType is int:
@@ -41,7 +41,7 @@ class CSVFileProcessor:
             return
         for column in self.columns:
             col_elems = self.getColumnDataByName(column)
-            self.columnsType[column] = get_data_type(col_elems)
+            self.columns_type[column] = get_data_type(col_elems)
             
     
     def getColumnDataByName(self, columnName):
