@@ -1,4 +1,4 @@
-from csv_data_filtering import filter_on_strings
+from CSV.csv_data_filtering import filter_on_strings
 
 def displayCommandMenu(file_processor):
     print("1 - Filtrer")
@@ -9,6 +9,7 @@ def displayCommandMenu(file_processor):
         print("Liste des colonnes : ")
         print(file_processor.columns)
         choosen_column = input("La colonne sur laquelle appliquer le filtre : ")
+        
         choosen_filter_operation = input("Quel type de filtre appliquer ? \n1 - contains  \n2 - startswith  \n3 - endswith  \n4 - size \n-> ")
         filter = "contains"
         if choosen_filter_operation == 1:
@@ -19,6 +20,7 @@ def displayCommandMenu(file_processor):
             filter = "endswith"
         if choosen_filter_operation == 4:
             filter = "size"
+            
         choosen_filter_word = input("Mot à utiliser pour le filtre : ")
         print(filter_on_strings(file_processor.getColumnDataByName(choosen_column), choosen_filter_word, filter))
         

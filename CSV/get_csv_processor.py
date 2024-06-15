@@ -1,4 +1,4 @@
-from CSVFileProcessor import CSVFileProcessor
+from CSV.CSVFileProcessor import CSVFileProcessor
 
 def getCSVDataProcessor(fileName):
     try:

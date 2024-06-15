@@ -1,0 +1,90 @@
+[
+  {
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "age": 21,
+    "adresse": {
+      "rue": "123 Rue Principale",
+      "ville": "Paris",
+      "codePostal": "75001"
+    },
+    "cours": [
+      {
+        "nom": "Mathématiques",
+        "professeur": "Mme. Durand",
+        "note": 15
+      },
+      {
+        "nom": "Histoire",
+        "professeur": "M. Martin",
+        "note": 14
+      }
+    ]
+  },
+  {
+    "nom": "Martin",
+    "prenom": "Sophie",
+    "age": 22,
+    "adresse": {
+      "rue": "456 Avenue des Champs",
+      "ville": "Lyon",
+      "codePostal": "69002"
+    },
+    "cours": [
+      {
+        "nom": "Physique",
+        "professeur": "M. Bernard",
+        "note": 13
+      },
+      {
+        "nom": "Littérature",
+        "professeur": "Mme. Dupuis",
+        "note": 16
+      }
+    ]
+  },
+  {
+    "nom": "Legrand",
+    "prenom": "Pierre",
+    "age": 20,
+    "adresse": {
+      "rue": "789 Boulevard de la Liberté",
+      "ville": "Marseille",
+      "codePostal": "13001"
+    },
+    "cours": [
+      {
+        "nom": "Chimie",
+        "professeur": "Mme. Lefevre",
+        "note": 14
+      },
+      {
+        "nom": "Philosophie",
+        "professeur": "M. Girard",
+        "note": 17
+      }
+    ]
+  },
+  {
+    "nom": "Bernard",
+    "prenom": "Lucie",
+    "age": 23,
+    "adresse": {
+      "rue": "1010 Rue de la Paix",
+      "ville": "Nice",
+      "codePostal": "06000"
+    },
+    "cours": [
+      {
+        "nom": "Biologie",
+        "professeur": "M. Simon",
+        "note": 18
+      },
+      {
+        "nom": "Informatique",
+        "professeur": "Mme. Rousseau",
+        "note": 19
+      }
+    ]
+  }
+]

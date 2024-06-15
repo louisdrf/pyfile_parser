@@ -1,8 +1,8 @@
 from error_types import FileTypeError
-from CSV_parser import getCSVDataProcessor
+from CSV.get_csv_processor import getCSVDataProcessor
 from command_menu import displayCommandMenu
 from file_helper import getFileType
-
+from JSON.get_json_processor import getJSONDataProcessor
 
 def main():
     try:
@@ -15,10 +15,9 @@ def main():
 def get_file_processor(fileName):
     fileType = getFileType(fileName)
     if fileType == 'csv':
-        return getCSVDataProcessor(fileName)
-        
-    #elif fileType == 'json':
-        #parseJSON(fileName)
+        return getCSVDataProcessor(fileName) 
+    elif fileType == 'json':
+        return getJSONDataProcessor(fileName)
         
        
 if __name__ == "__main__":

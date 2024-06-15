@@ -15,16 +15,15 @@ class CSVFileProcessor:
     
     def displayFileStatistics(self):
         for columnName, columnType in  self.columnsType.items():
+            print(columnName)
+            
             if columnType is int:
-                print(columnName)
                 display_number_statistics(self.getColumnDataByName(columnName))     
             
             if columnType is bool:
-                print(columnName)
                 display_bool_statistics(self.getColumnDataByName(columnName))
             
             if columnType is list:
-                print(columnName)
                 display_list_statistics(self.getColumnDataByName(columnName))
             
         
