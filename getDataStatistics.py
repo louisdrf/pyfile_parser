@@ -1,7 +1,6 @@
 from file_helper import multiple_string_values_to_list
 
 def display_number_statistics(number_list):
-    number_list = [float(num) for num in number_list if num.strip().replace('.', '', 1).isdigit()]
     average = float(sum(number_list) / len(number_list))
     print(f"max : {max(number_list)} / min : {min(number_list)} / moyenne : {average:.2f}")
     
@@ -23,7 +22,7 @@ def display_bool_statistics(bool_list):
     
     
 def display_list_statistics(list_of_lists):
-    lists_size = [len(multiple_string_values_to_list(l)) for l in list_of_lists]
+    lists_size = [len(l) for l in list_of_lists]
     number_of_lists = len(list_of_lists)
     total_lists_size = sum(lists_size)
     

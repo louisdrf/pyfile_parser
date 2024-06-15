@@ -24,6 +24,9 @@ def displayCommandMenu(file_processor):
         choosen_filter_word = input("Mot à utiliser pour le filtre : ")
         print(filter_on_strings(file_processor.getColumnDataByName(choosen_column), choosen_filter_word, filter))
         
+    elif choice == 3:
+        file_processor.displayFileStatistics()
+        
         
         
     

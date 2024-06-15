@@ -1,9 +1,11 @@
 import json
 from file_helper import get_json_data_type
+from getDataStatistics import display_number_statistics, display_bool_statistics, display_list_statistics
+
 class JSONFileProcessor:
     def __init__(self, file):
         self.file = file
-        self.fields = {}
+        self.fields_data = {}
         self.fields_type = {}
         self.content = json.load(file)
         self.group_fields(self.content)
@@ -11,9 +13,25 @@ class JSONFileProcessor:
         
         print(self.fields_type)
         
+    
+    def displayFileStatistics(self):
+        for field_name, field_type in  self.fields_type.items():
+            if field_type is int:
+                display_number_statistics(self.get_data_by_field_name(field_name))     
+            
+            if field_type is bool:
+                display_bool_statistics(self.get_data_by_field_name(field_name))
+            
+            if field_type is list:
+                display_list_statistics(self.get_data_by_field_name(field_name))
+            
+            else:
+                pass
+    
+        
     def group_fields(self, json_data, fields=None):
         if fields is None:
-            fields = self.fields
+            fields = self.fields_data
         
         if isinstance(json_data, dict):
             json_data = [json_data]
@@ -48,3 +66,6 @@ class JSONFileProcessor:
                         fields_type[field] = field_type
                     else:
                         pass
+                    
+    def get_data_by_field_name(self, field_name):
+        return [item for item in self.fields_data[field_name]]

@@ -1,5 +1,5 @@
 import csv
-from file_helper import get_data_type
+from file_helper import get_data_type, multiple_string_values_to_list
 from getDataStatistics import display_number_statistics, display_bool_statistics, display_list_statistics
 class CSVFileProcessor:
     def __init__(self, file):
@@ -11,20 +11,21 @@ class CSVFileProcessor:
         
         self.setReader()
         self.setColumnsDataType()
-        self.displayFileStatistics()
     
     def displayFileStatistics(self):
         for columnName, columnType in  self.columnsType.items():
             print(columnName)
             
             if columnType is int:
-                display_number_statistics(self.getColumnDataByName(columnName))     
+                number_list = [float(num) for num in self.getColumnDataByName(columnName) if num.strip().replace('.', '', 1).isdigit()] # convert string number value to float
+                display_number_statistics(number_list)     
             
             if columnType is bool:
                 display_bool_statistics(self.getColumnDataByName(columnName))
             
             if columnType is list:
-                display_list_statistics(self.getColumnDataByName(columnName))
+                lists = [multiple_string_values_to_list(l) for l in self.getColumnDataByName(columnName)] # convert separated string values to list
+                display_list_statistics(lists)
             
         
     def setReader(self):
