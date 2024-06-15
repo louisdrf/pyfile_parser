@@ -10,6 +10,21 @@ def getFileType(file_name):
     return file_type
 
 
+def get_json_data_type(value):
+    if isinstance(value, str):
+        return str
+    elif isinstance(value, bool):
+        return str
+    elif isinstance(value, int):
+        return int
+    elif isinstance(value, float):
+        return float
+    elif isinstance(value, list):
+        return list
+    else:
+        pass
+
+
 def get_data_type(column):
     if is_list(column[0]): 
             return list 
