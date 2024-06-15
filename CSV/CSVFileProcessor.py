@@ -1,5 +1,5 @@
 import csv
-from file_helper import get_data_type, multiple_string_values_to_list
+from file_helper import convert_to_boolean, get_data_type, multiple_string_values_to_list
 from getDataStatistics import display_number_statistics, display_bool_statistics, display_list_statistics
 class CSVFileProcessor:
     def __init__(self, file):
@@ -21,7 +21,8 @@ class CSVFileProcessor:
                 display_number_statistics(number_list)     
             
             if columnType is bool:
-                display_bool_statistics(self.getColumnDataByName(columnName))
+                bools_list = [convert_to_boolean(string_bool) for string_bool in self.getColumnDataByName(columnName)] # convert string bool like "true" or "0" to bool
+                display_bool_statistics(bools_list)
             
             if columnType is list:
                 lists = [multiple_string_values_to_list(l) for l in self.getColumnDataByName(columnName)] # convert separated string values to list

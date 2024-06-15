@@ -14,7 +14,7 @@ def get_json_data_type(value):
     if isinstance(value, str):
         return str
     elif isinstance(value, bool):
-        return str
+        return bool
     elif isinstance(value, int):
         return int
     elif isinstance(value, float):
@@ -44,6 +44,15 @@ def is_list(value):
     if '\n' in value or ',' in value or ';' in value or (value.startswith("[") and value.endswith("]")):
         return True
     return False
+
+
+def convert_to_boolean(value):
+    if value in {"true", "1"}:
+        return True
+    elif value in {"false", "0"}:
+        return False
+    else:
+        raise ValueError(f"Cannot convert value '{value}' to boolean")
 
 
 def multiple_string_values_to_list(value):

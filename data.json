@@ -19,7 +19,14 @@
         "professeur": "M. Martin",
         "note": 14
       }
-    ]
+    ],
+    "taille": 1.75,
+    "admissible": true,
+    "moyenneNotes": 14.5,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "anglais"]
+    }
   },
   {
     "nom": "Martin",
@@ -41,7 +48,14 @@
         "professeur": "Mme. Dupuis",
         "note": 16
       }
-    ]
+    ],
+    "taille": 1.68,
+    "admissible": false,
+    "moyenneNotes": 14.5,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "espagnol"]
+    }
   },
   {
     "nom": "Legrand",
@@ -63,7 +77,14 @@
         "professeur": "M. Girard",
         "note": 17
       }
-    ]
+    ],
+    "taille": 1.82,
+    "admissible": true,
+    "moyenneNotes": 15.5,
+    "informationsComplementaires": {
+      "sérieux": true,
+      "languesParlées": ["français", "allemand"]
+    }
   },
   {
     "nom": "Bernard",
@@ -85,6 +106,13 @@
         "professeur": "Mme. Rousseau",
         "note": 19
       }
-    ]
+    ],
+    "taille": 1.70,
+    "admissible": false,
+    "moyenneNotes": 18.5,
+    "informationsComplementaires": {
+      "sérieux": false,
+      "languesParlées": ["français", "italien"]
+    }
   }
 ]

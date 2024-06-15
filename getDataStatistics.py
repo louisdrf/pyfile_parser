@@ -7,18 +7,13 @@ def display_number_statistics(number_list):
     
 def display_bool_statistics(bool_list):
     total = len(bool_list)
-    
-    if bool_list[0] in {'0', '1'}:
-        count_falses = bool_list.count('0')
-        count_trues = bool_list.count('1')
-    else:
-        count_falses = bool_list.count("false")
-        count_trues = bool_list.count("true")
+    count_trues = sum(bool_list)
+    count_falses = total - count_trues
 
-    falses = (count_falses / total) * 100
-    trues = (count_trues / total) * 100
+    trues_percentage = (count_trues / total) * 100
+    falses_percentage = (count_falses / total) * 100
     
-    print(f"faux : {falses:.1f} % | vrais : {trues:.1f} %")
+    print(f"faux : {falses_percentage:.1f} % | vrais : {trues_percentage:.1f} %")
     
     
 def display_list_statistics(list_of_lists):

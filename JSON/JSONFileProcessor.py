@@ -10,13 +10,13 @@ class JSONFileProcessor:
         self.content = json.load(file)
         self.group_fields(self.content)
         self.group_fields_by_type(self.content)
-        
-        print(self.fields_type)
-        
+                
     
     def displayFileStatistics(self):
         for field_name, field_type in  self.fields_type.items():
-            if field_type is int:
+            print(field_name, " : ", field_type)
+            
+            if field_type is int or field_type is float:
                 display_number_statistics(self.get_data_by_field_name(field_name))     
             
             if field_type is bool:
