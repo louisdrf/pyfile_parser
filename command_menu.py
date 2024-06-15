@@ -1,4 +1,4 @@
-from CSV.csv_data_filtering import filter_on_strings
+from data_filtering import filter_on_strings
 
 def displayCommandMenu(file_processor):
     print("1 - Filtrer")

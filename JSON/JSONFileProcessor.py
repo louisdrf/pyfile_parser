@@ -5,67 +5,69 @@ from getDataStatistics import display_number_statistics, display_bool_statistics
 class JSONFileProcessor:
     def __init__(self, file):
         self.file = file
-        self.fields_data = {}
-        self.fields_type = {}
+        self.columns = []
+        self.columns_data = {}
+        self.columns_type = {}
         self.content = json.load(file)
-        self.group_fields(self.content)
-        self.group_fields_by_type(self.content)
+        self.group_columns(self.content)
+        self.group_columns_by_type(self.content)
                 
     
     def displayFileStatistics(self):
-        for field_name, field_type in  self.fields_type.items():
-            print(field_name, " : ", field_type)
+        for column_name, column_type in  self.columns_type.items():
+            print(column_name)
             
-            if field_type is int or field_type is float:
-                display_number_statistics(self.get_data_by_field_name(field_name))     
+            if column_type is int or column_type is float:
+                display_number_statistics(self.getColumnDataByName(column_name))     
             
-            if field_type is bool:
-                display_bool_statistics(self.get_data_by_field_name(field_name))
+            if column_type is bool:
+                display_bool_statistics(self.getColumnDataByName(column_name))
             
-            if field_type is list:
-                display_list_statistics(self.get_data_by_field_name(field_name))
+            if column_type is list:
+                display_list_statistics(self.getColumnDataByName(column_name))
             
             else:
                 pass
     
         
-    def group_fields(self, json_data, fields=None):
-        if fields is None:
-            fields = self.fields_data
+    def group_columns(self, json_data, columns=None):
+        if columns is None:
+            columns = self.columns_data
         
         if isinstance(json_data, dict):
             json_data = [json_data]
 
         for item in json_data:
-            for field, value in item.items():
+            for column, value in item.items():
                 if isinstance(value, dict):
-                    self.group_fields([value], fields)
+                    self.group_columns([value], columns)
                 else:
-                    if field not in fields:
-                        fields[field] = [value]
+                    if column not in columns:
+                        columns[column] = [value]
                     else:
-                        fields[field].append(value)
+                        columns[column].append(value)
         
-        return fields
+        return columns
     
     
-    def group_fields_by_type(self, json_data, fields_type=None): 
-        if fields_type is None:
-            fields_type = self.fields_type
+    def group_columns_by_type(self, json_data, columns_type=None): 
+        if columns_type is None:
+            columns_type = self.columns_type
         
         if isinstance(json_data, dict):
             json_data = [json_data]
         
         for item in json_data:
-            for field, value in item.items():
-                field_type = get_json_data_type(value)
+            for column, value in item.items():
+                column_type = get_json_data_type(value)
                 if isinstance(value, dict):
-                    self.group_fields_by_type([value], fields_type)
+                    self.group_columns_by_type([value], columns_type)
                 else:
-                    if field not in fields_type:
-                        fields_type[field] = field_type
+                    if column not in columns_type:
+                        self.columns.append(column)
+                        columns_type[column] = column_type
                     else:
                         pass
                     
-    def get_data_by_field_name(self, field_name):
-        return [item for item in self.fields_data[field_name]]
+    def getColumnDataByName(self, column_name):
+        return [item for item in self.columns_data[column_name]]
