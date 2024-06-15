@@ -27,23 +27,30 @@ def get_json_data_type(value):
 
 def get_data_type(column):
     if is_list(column[0]): 
-            return list 
+        return list 
         
-    elif all(elem in {'0', '1'} for elem in column[:10]):
-        if all(elem in {'0', '1'} for elem in column):
-            return bool
-        
-    elif column[0].isdigit():
-        return int
-    
     elif column[0].lower() in ['true', 'false']:
         return bool
+
+    elif all(elem in {'0', '1'} for elem in column):
+        return bool
+        
+    elif column[0].isdigit() or is_float(column[0]):
+        return int
 
 
 def is_list(value): 
     if '\n' in value or ',' in value or ';' in value or (value.startswith("[") and value.endswith("]")):
         return True
     return False
+
+
+def is_float(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
 
 
 def convert_to_boolean(value):
