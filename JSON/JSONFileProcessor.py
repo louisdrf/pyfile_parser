@@ -3,17 +3,27 @@ import json
 class JSONFileProcessor:
     def __init__(self, file):
         self.file = file
-        self.content = json.load(file)
         self.fields = {}
         self.fields_type = {}
-        self.show_content()
+        self.content = json.load(file)
+        self.group_fields(self.content)
         
-    def show_content(self):
-        for item in self.content:
+        
+    def group_fields(self, json_data, fields=None):
+        if fields is None:
+            fields = self.fields
+        
+        if isinstance(json_data, dict):
+            json_data = [json_data]
+
+        for item in json_data:
             for field, value in item.items():
-                if field not in self.fields:
-                    self.fields[field] = [value]
+                if isinstance(value, dict):
+                    self.group_fields([value], fields)
                 else:
-                    self.fields[field].append(value)
-                
-        print(self.fields)        
+                    if field not in fields:
+                        fields[field] = [value]
+                    else:
+                        fields[field].append(value)
+        
+        return fields
