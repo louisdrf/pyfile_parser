@@ -11,7 +11,7 @@ WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croiss
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
 
 def prompt_user(file_processor):
-    choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=[1, 2, 3])
+    choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=3)
     if choice == 1:
         prompt_filter(file_processor)
     elif choice == 2:
@@ -29,7 +29,7 @@ def prompt_sort(file_processor):
         
     column_type = file_processor.columns_type[choosen_column]
     column_data = file_processor.getColumnDataByName(choosen_column)
-    choosen_order = operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=[1, 2])
+    choosen_order = operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=2)
     order = get_sort_order_from_input(choosen_order)
     
     if column_type is int or column_type is float:
@@ -54,26 +54,26 @@ def prompt_filter(file_processor):
     column_type = file_processor.columns_type[choosen_column]
 
     if column_type is str:
-        filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=[1, 2])
+        filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
         
         if filter_type == 1:
-            filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT, valid_operation_numbers=[1, 2, 3, 4])
+            filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT, valid_operation_numbers=4)
             choosen_filter_word = input("Mot à utiliser pour le filtre : ")
             filtered_list = filter_on_strings_by_search(column_data, choosen_filter_word, filter_operation)
             
         elif filter_type == 2: 
             print(file_processor.getColumnsNameByType(str))
             second_column_data = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", file_processor.getColumnsNameByType(str))
-            filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=[1, 2, 3])
+            filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
             filtered_list = filter_on_strings_by_comparison(column_data, second_column_data, filter_comparison_operation)
 
          
     elif column_type is list:
-        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=[1, 2, 3]) 
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=3) 
         filtered_list = filter_on_list(file_processor.type, column_data, filter_operation)
 
     elif column_type is int:
-        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=[1, 2]) 
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
         filtered_list = filter_on_ints(file_processor.content, column_data, choosen_column, filter_operation)
 
     print(filtered_list)
@@ -94,7 +94,7 @@ def get_sort_order_from_input(number):
 def operation_number_input(input_content, valid_operation_numbers):
     operation_number = int(input(input_content))
     
-    while operation_number not in valid_operation_numbers:
+    while operation_number not in range(valid_operation_numbers + 1):
         print(f"L'opération portant le numéro {operation_number} n'existe pas.")
         operation_number = int(input(input_content))
         
