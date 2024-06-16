@@ -62,8 +62,9 @@ def prompt_filter(file_processor):
             filtered_list = filter_on_strings_by_search(column_data, choosen_filter_word, filter_operation)
             
         elif filter_type == 2: # filter by comparing 2 columns
-            print(file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column))
-            second_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column))
+            comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column)
+            print(comparable_column_names)
+            second_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
             second_column_data = file_processor.getColumnDataByName(second_column)
             filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
             filtered_list = filter_on_strings_by_comparison(column_data, second_column_data, filter_comparison_operation)
@@ -75,7 +76,7 @@ def prompt_filter(file_processor):
 
     elif column_type is int:
         filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
-        filtered_list = filter_on_ints(file_processor.content, column_data, choosen_column, filter_operation)
+        filtered_list = filter_on_ints(column_data, filter_operation)
 
     print(filtered_list)
 

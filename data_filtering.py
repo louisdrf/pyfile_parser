@@ -62,16 +62,19 @@ def filter_on_list(file_type, column, operation):
         raise ValueError(f"Unknown operation: {operation}")
     
 
-def filter_on_ints(content, column, column_name, operation):
-    column = [float(val) for val in column]
-
+def filter_on_ints(number_list, operation):
+    number_list = [float(val) for val in number_list]
+    average = float(sum(number_list) / len(number_list))
+    
     if operation == 1:   # moins que la moyenne
-        average = float(sum(column) / len(column))
-        return [row for row in content if float(row[column_name]) < average]
+        return [number for number in number_list if number < average]
 
     elif operation == 2: # plus que la moyenne
-        average = float(sum(column) / len(column))
-        return [row for row in content if float(row[column_name]) > average]
+        return [number for number in number_list if number > average]
 
     else:
         raise ValueError(f"Unknown operation: {operation}")
+    
+
+def filter_on_ints_by_comparison():
+    return None
