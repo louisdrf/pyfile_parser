@@ -1,6 +1,5 @@
-from CSV.CSVFileProcessor import CSVFileProcessor
 from data_filtering import filter_on_number_of_elements, filter_on_strings
-from data_sorting import sort_list
+from data_sorting import get_sorted_list, sort_numbers, sort_lists
 
 
 def prompt_user(file_processor):
@@ -25,11 +24,18 @@ def prompt_sort(file_processor):
     print(file_processor.columns)
     choosen_column = input("La colonne sur laquelle appliquer le tri : ")
     column_type = file_processor.columns_type[choosen_column]
-    column = file_processor.getColumnDataByName(choosen_column)
+    column_data = file_processor.getColumnDataByName(choosen_column)
     choosen_order = int(input("Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "))
     order = get_sort_order_from_input(choosen_order)
     
-    print(sort_list(column, file_processor.type, column_type, order_by=order))
+    if column_type is int or column_type is float:
+        print(sort_numbers(column_data, file_processor.type, order_by=order))
+        
+    elif column_type is str:
+        print(get_sorted_list(column_data, order_by=order))
+        
+    elif column_type is list:
+        print(sort_lists(column_data, file_processor.type, order_by=order))
    
     
     
