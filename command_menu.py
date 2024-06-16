@@ -54,31 +54,48 @@ def prompt_filter(file_processor):
     column_type = file_processor.columns_type[choosen_column]
 
     if column_type is str:
-        filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
-        
-        if filter_type == 1: # filter on one column
-            filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT, valid_operation_numbers=4)
-            choosen_filter_word = input("Mot à utiliser pour le filtre : ")
-            filtered_list = filter_on_strings_by_search(column_data, choosen_filter_word, filter_operation)
-            
-        elif filter_type == 2: # filter by comparing 2 columns
-            comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column)
-            print(comparable_column_names)
-            second_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
-            second_column_data = file_processor.getColumnDataByName(second_column)
-            filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
-            filtered_list = filter_on_strings_by_comparison(column_data, second_column_data, filter_comparison_operation)
+        filtered_list = get_filtered_string_list_from_prompt(file_processor, column_data, choosen_column)
 
-         
     elif column_type is list:
-        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=3) 
-        filtered_list = filter_on_list(file_processor.type, column_data, filter_operation)
-
+        filtered_list = get_filtered_lists_from_prompt(file_processor, column_data)
+        
     elif column_type is int:
-        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
-        filtered_list = filter_on_ints(column_data, filter_operation)
-
+        filtered_list = get_filtered_ints_list_from_prompt(file_processor, column_data)
+        
     print(filtered_list)
+
+
+
+
+def get_filtered_ints_list_from_prompt(file_processor, column_data):
+    filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
+    return filter_on_ints(column_data, filter_operation)
+
+
+
+
+def get_filtered_lists_from_prompt(file_processor, column_data):
+    filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=3) 
+    return filter_on_list(file_processor.type, column_data, filter_operation)
+
+
+
+
+def get_filtered_string_list_from_prompt(file_processor, column_data, choosen_column):
+    filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
+        
+    if filter_type == 1: # filter on one column
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT, valid_operation_numbers=4)
+        choosen_filter_word = input("Mot à utiliser pour le filtre : ")
+        return filter_on_strings_by_search(column_data, choosen_filter_word, filter_operation)
+        
+    elif filter_type == 2: # filter by comparing 2 columns
+        comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column)
+        print(comparable_column_names)
+        second_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
+        second_column_data = file_processor.getColumnDataByName(second_column)
+        filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
+        return filter_on_strings_by_comparison(column_data, second_column_data, filter_comparison_operation)
 
 
 

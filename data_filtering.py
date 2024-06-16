@@ -15,11 +15,9 @@ def filter_on_strings_by_search(string_list, value, operation, case_sensitive=Fa
         return [string for string in string_list if string.endswith(value_lower)]
     elif operation == 4: # size
         return [string for string in string_list if len(string) == len(value)]        
-    else:
-        raise ValueError(f"Unknown operation: {operation}")
     
     
-    
+   
     
 def filter_on_strings_by_comparison(first_string_list, second_string_list, operation, case_sensitive=False):
     if len(first_string_list) != len(second_string_list):
@@ -35,9 +33,6 @@ def filter_on_strings_by_comparison(first_string_list, second_string_list, opera
         return [first for first, second in zip(first_string_list, second_string_list) if first > second]
     elif operation == 3:  # first and second string have the same size
         return [first for first, second in zip(first_string_list, second_string_list) if len(first) == len(second)]
-    else:
-        raise ValueError(f"Unknown operation: {operation}")
-    
     
     
     
@@ -58,8 +53,6 @@ def filter_on_list(file_type, column, operation):
         maximum_elem = max(len(liste) for liste in column)
         return [l for l in column if len(l) == maximum_elem]
 
-    else:
-        raise ValueError(f"Unknown operation: {operation}")
     
 
 def filter_on_ints(number_list, operation):
@@ -72,9 +65,18 @@ def filter_on_ints(number_list, operation):
     elif operation == 2: # plus que la moyenne
         return [number for number in number_list if number > average]
 
-    else:
-        raise ValueError(f"Unknown operation: {operation}")
     
 
-def filter_on_ints_by_comparison():
-    return None
+def filter_on_ints_by_comparison(first_number_list, second_number_list, operation):
+    first_number_list = [float(val) for val in first_number_list]
+    second_number_list = [float(val) for val in second_number_list]
+
+    if operation == 1:  # first number smaller than second one
+        return [first for first, second in zip(first_number_list, second_number_list) if first < second]
+    
+    if operation == 2:  # first number bgger than second one
+        return [first for first, second in zip(first_number_list, second_number_list) if first > second]
+    
+    if operation == 3:  # first number bigger than second one
+        return [first for first, second in zip(first_number_list, second_number_list) if first == second]
+        
