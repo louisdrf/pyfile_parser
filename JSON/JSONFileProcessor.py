@@ -5,6 +5,7 @@ from getDataStatistics import display_number_statistics, display_bool_statistics
 class JSONFileProcessor:
     def __init__(self, file):
         self.file = file
+        self.type = 'json'
         self.columns = []
         self.columns_data = {}
         self.columns_type = {}

@@ -4,6 +4,7 @@ from getDataStatistics import display_number_statistics, display_bool_statistics
 class CSVFileProcessor:
     def __init__(self, file):
         self.file = file
+        self.type = 'csv'
         self.reader = None
         self.columns = []
         self.columns_type = {}
