@@ -21,7 +21,15 @@ def prompt_user(file_processor):
 def prompt_sort(file_processor):
     print("Liste des colonnes : ")
     print(file_processor.columns)
+    
     choosen_column = input("La colonne sur laquelle appliquer le tri : ")
+    while True:
+        print(f"La colonne {choosen_column} n'existe pas dans la liste.")
+        print(file_processor.columns)
+        choosen_column = input("La colonne sur laquelle appliquer le tri : ")
+        if choosen_column in file_processor.columns:
+            break
+        
     column_type = file_processor.columns_type[choosen_column]
     column_data = file_processor.getColumnDataByName(choosen_column)
     choosen_order = int(input("Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "))
@@ -42,7 +50,15 @@ def prompt_sort(file_processor):
 def prompt_filter(file_processor):
     print("Liste des colonnes : ")
     print(file_processor.columns)
+    
     choosen_column = input("La colonne sur laquelle appliquer le filtre : ")
+    while True:
+        print(f"La colonne {choosen_column} n'existe pas dans la liste.")
+        print(file_processor.columns)
+        choosen_column = input("La colonne sur laquelle appliquer le tri : ")
+        if choosen_column in file_processor.columns:
+            break
+        
     column = file_processor.getColumnDataByName(choosen_column)
     column_type = file_processor.columns_type[choosen_column]
     

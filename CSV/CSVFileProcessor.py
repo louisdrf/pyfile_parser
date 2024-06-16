@@ -1,5 +1,5 @@
 import csv
-from file_helper import convert_to_boolean, get_data_type, multiple_string_values_to_boolean, multiple_string_values_to_float, multiple_string_values_to_list
+from file_helper import get_data_type, multiple_string_values_to_boolean, multiple_string_values_to_float, multiple_string_values_to_list
 from getDataStatistics import display_number_statistics, display_bool_statistics, display_list_statistics
 class CSVFileProcessor:
     def __init__(self, file):
