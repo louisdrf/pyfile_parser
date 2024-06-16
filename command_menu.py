@@ -24,12 +24,12 @@ def prompt_sort(file_processor):
     print("Liste des colonnes : ")
     print(file_processor.columns)
     choosen_column = input("La colonne sur laquelle appliquer le tri : ")
-    column = file_processor.getColumnDataByName(choosen_column)
     column_type = file_processor.columns_type[choosen_column]
+    column = file_processor.getColumnDataByName(choosen_column)
     choosen_order = int(input("Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "))
     order = get_sort_order_from_input(choosen_order)
     
-    print(sort_list(column, order_by=order))
+    print(sort_list(column, file_processor.type, column_type, order_by=order))
    
     
     
