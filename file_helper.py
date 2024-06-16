@@ -38,6 +38,9 @@ def get_data_type(column):
     elif column[0].isdigit() or is_float(column[0]):
         return int
 
+    else:
+        return str
+
 
 def is_list(value): 
     if '\n' in value or ',' in value or ';' in value or (value.startswith("[") and value.endswith("]")):

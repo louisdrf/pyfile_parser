@@ -1,6 +1,6 @@
 from file_helper import multiple_string_values_to_list
 
-def filter_on_strings(string_list, value, operation, case_sensitive=False):
+def filter_on_strings_by_search(string_list, value, operation, case_sensitive=False):
     if not case_sensitive:
         value_lower = value.lower()
         string_list = [string.lower() for string in string_list]
@@ -14,9 +14,18 @@ def filter_on_strings(string_list, value, operation, case_sensitive=False):
     elif operation == 3: # endswith
         return [string for string in string_list if string.endswith(value_lower)]
     elif operation == 4: # size
-        return [string for string in string_list if len(string) == len(value)]
+        return [string for string in string_list if len(string) == len(value)]        
     else:
         raise ValueError(f"Unknown operation: {operation}")
+    
+    
+    
+    
+def filter_on_strings_by_comparison(first_string_list, second_string_list, operation):
+    return None
+    
+    
+    
     
 
 def filter_on_list(file_type, column, operation):
