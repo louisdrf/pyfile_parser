@@ -21,8 +21,22 @@ def filter_on_strings_by_search(string_list, value, operation, case_sensitive=Fa
     
     
     
-def filter_on_strings_by_comparison(first_string_list, second_string_list, operation):
-    return None
+def filter_on_strings_by_comparison(first_string_list, second_string_list, operation, case_sensitive=False):
+    if len(first_string_list) != len(second_string_list):
+        raise ValueError("Les listes doivent avoir la même longueur")
+    
+    if not case_sensitive:
+        first_string_list = [string.lower() for string in first_string_list]
+        second_string_list = [string.lower() for string in second_string_list]
+    
+    if operation == 1:  # first string before second one
+        return [first for first, second in zip(first_string_list, second_string_list) if first < second]
+    elif operation == 2:  # second string before first one
+        return [first for first, second in zip(first_string_list, second_string_list) if first > second]
+    elif operation == 3:  # first and second string have the same size
+        return [first for first, second in zip(first_string_list, second_string_list) if len(first) == len(second)]
+    else:
+        raise ValueError(f"Unknown operation: {operation}")
     
     
     

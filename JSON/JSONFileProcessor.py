@@ -76,3 +76,6 @@ class JSONFileProcessor:
     
     def getColumnsNameByType(self, type):
         return [column for column, column_type in self.columns_type.items() if column_type == type]
+    
+    def getColumnsNameByTypeExcludingOne(self, type, excluded_column_name):
+       return [column_name for column_name, column_type in self.columns_type.items() if column_type == type and column_name != excluded_column_name]
