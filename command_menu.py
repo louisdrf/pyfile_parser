@@ -1,14 +1,14 @@
 from data_sorting import get_sorted_list, sort_numbers, sort_lists
-from data_filtering import filter_on_list, filter_on_strings_by_search, filter_on_strings_by_comparison
+from data_filtering import filter_on_ints, filter_on_list, filter_on_strings_by_search, filter_on_strings_by_comparison
 
 
 ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
 WHICH_FILTER_TYPE_APPLY_PROMPT = "Quel type de filtre appliquer ? \n1 - Recherche dans une colonne \n2 - Comparaison entre colonnes\n-> "
 WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT = "Quel type de filtre appliquer ? \n1 - contient  \n2 - commence par  \n3 - se termine par  \n4 - mots de même taille \n-> "
 WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT = "Quel type de filtre appliquer ? \n1 - nombre d'élements  \n2 - minimum  \n3 - maximum\n-> "
+WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel type de filtre appliquer ? \n1 - moins que la moyenne\n2 - plus que la moyenne\n-> "
 WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
-
 
 def prompt_user(file_processor):
     choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=[1, 2, 3])
@@ -73,8 +73,8 @@ def prompt_filter(file_processor):
         filtered_list = filter_on_list(file_processor.type, column_data, filter_operation)
 
     elif column_type is int:
-        # TODO
-        print("todo")
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=[1, 2]) 
+        filtered_list = filter_on_ints(file_processor.content, column_data, choosen_column, filter_operation)
 
     print(filtered_list)
 
