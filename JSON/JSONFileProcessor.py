@@ -68,6 +68,7 @@ class JSONFileProcessor:
                         columns_type[column] = column_type
                     else:
                         pass
+                 
                     
     def getColumnDataByName(self, column_name):
         return [item for item in self.columns_data[column_name]]

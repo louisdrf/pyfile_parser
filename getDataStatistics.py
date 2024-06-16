@@ -1,5 +1,3 @@
-from file_helper import multiple_string_values_to_list
-
 def display_number_statistics(number_list):
     average = float(sum(number_list) / len(number_list))
     print(f"max : {max(number_list)} / min : {min(number_list)} / moyenne : {average:.2f}")

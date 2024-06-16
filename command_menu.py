@@ -1,4 +1,6 @@
 from data_filtering import filter_on_number_of_elements, filter_on_strings
+from data_sorting import sort_list
+
 
 def prompt_user(file_processor):
     print("1 - Filtrer")
@@ -9,11 +11,27 @@ def prompt_user(file_processor):
     if choice == 1:
         prompt_filter(file_processor)
 
-    # todo choix Tri 
+    elif choice == 2:
+        prompt_sort(file_processor)
         
     elif choice == 3:
         file_processor.displayFileStatistics()
-
+        
+        
+        
+def prompt_sort(file_processor):
+    print("Liste des colonnes : ")
+    print(file_processor.columns)
+    choosen_column = input("La colonne sur laquelle appliquer le tri : ")
+    column = file_processor.getColumnDataByName(choosen_column)
+    column_type = file_processor.columns_type[choosen_column]
+    choosen_order = int(input("Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "))
+    order = get_sort_order_from_input(choosen_order)
+    
+    print(sort_list(column, order_by=order))
+   
+    
+    
         
 def prompt_filter(file_processor):
     print("Liste des colonnes : ")
@@ -44,6 +62,15 @@ def get_filter_operation_from_input(number):
         return "endswith"
     elif number == 4:
         return "size"
+    else:
+        raise ValueError(f"Unknown operation number: {number}")
+    
+    
+def get_sort_order_from_input(number):
+    if number == 1:
+        return "ASC"
+    elif number == 2:
+        return "DESC"
     else:
         raise ValueError(f"Unknown operation number: {number}")
         
