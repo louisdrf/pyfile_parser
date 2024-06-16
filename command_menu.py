@@ -56,13 +56,12 @@ def prompt_filter(file_processor):
     if column_type is str:
         filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
         
-        if filter_type == 1:
+        if filter_type == 1: # filter on one column
             filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT, valid_operation_numbers=4)
             choosen_filter_word = input("Mot à utiliser pour le filtre : ")
             filtered_list = filter_on_strings_by_search(column_data, choosen_filter_word, filter_operation)
             
-        elif filter_type == 2: 
-            print(file_processor.getColumnsNameByType(str))
+        elif filter_type == 2: # filter by comparing 2 columns
             second_column_data = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", file_processor.getColumnsNameByType(str))
             filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
             filtered_list = filter_on_strings_by_comparison(column_data, second_column_data, filter_comparison_operation)
