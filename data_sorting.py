@@ -10,16 +10,16 @@ def sort_numbers(data, filetype, order_by="ASC"):
 
 def sort_lists(data, filetype, order_by="ASC"):
     if filetype == 'csv':
-        data = multiple_string_values_to_list(data)  
-        
-    return get_sorted_list(data, order_by)   
+        data = [multiple_string_values_to_list(l) for l in data] 
+    
+    return get_sorted_list(data, order_by, key=len)
     
 
 
-def get_sorted_list(data, order_by="ASC"):
+def get_sorted_list(data, order_by="ASC", key=None):
     if order_by == "ASC":
-        return sorted(data)
+        return sorted(data, key=key)
     else:
-        return sorted(data, reverse=True)
+        return sorted(data, reverse=True, key=key)
 
     
