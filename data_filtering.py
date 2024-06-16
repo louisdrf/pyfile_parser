@@ -19,6 +19,8 @@ def filter_on_strings(string_list, value, operation, case_sensitive=False):
         raise ValueError(f"Unknown operation: {operation}")
     
 
-def filter_on_number_of_elements(column, number):
-    filtered_list = [multiple_string_values_to_list(l) for l in column]
-    return [val for val in filtered_list if len(val) == number]
+def filter_on_number_of_elements(column, number, file_type):
+    if file_type == 'csv':
+        column = [multiple_string_values_to_list(l) for l in column]
+
+    return [val for val in column if len(val) == number]

@@ -1,3 +1,4 @@
+from CSV.CSVFileProcessor import CSVFileProcessor
 from data_filtering import filter_on_number_of_elements, filter_on_strings
 
 def prompt_user(file_processor):
@@ -30,7 +31,7 @@ def prompt_filter(file_processor):
 
     elif column_type is list:  
         number_of_elements = int(input("Nombre voulu d'éléments dans chaque liste : "))
-        filtered_list = filter_on_number_of_elements(column, number_of_elements)
+        filtered_list = filter_on_number_of_elements(column, number_of_elements, file_processor.type)
         print(filtered_list)
 
         
