@@ -53,6 +53,9 @@ class CSVFileProcessor:
         return [row[columnName] for row in self.content]
     
     
+    def getColumnTypeByName(self, column_name):
+        return self.columns_type[column_name]
+    
     def getColumnsNameByType(self, type):
        return [column_name for column_name, column_type in self.columns_type.items() if column_type == type]
    

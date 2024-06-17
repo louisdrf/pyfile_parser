@@ -10,6 +10,7 @@ WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel type de filtre appliquer ? \n1 
 WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
 
+
 def prompt_user(file_processor):
     choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=3)
     if choice == 1:
@@ -21,25 +22,26 @@ def prompt_user(file_processor):
         
         
         
+        
 def prompt_sort(file_processor):
     print("Liste des colonnes : ")
     print(file_processor.columns)
     
     choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT, file_processor.columns)
         
-    column_type = file_processor.columns_type[choosen_column]
-    column_data = file_processor.getColumnDataByName(choosen_column)
-    choosen_order = operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=2)
-    order = get_sort_order_from_input(choosen_order)
+    column_type = file_processor.getColumnTypeByName(choosen_column)
+    order = get_sort_order_from_input(operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=2))
     
     if column_type is int or column_type is float:
-        print(sort_numbers(column_data, file_processor.type, order_by=order))
+        sorted_list = sort_numbers(file_processor, choosen_column, order_by=order)
         
     elif column_type is str:
-        print(get_sorted_list(column_data, order_by=order))
+        sorted_list = get_sorted_list(file_processor, choosen_column, order_by=order)
         
     elif column_type is list:
-        print(sort_lists(column_data, file_processor.type, order_by=order))
+        sorted_list = sort_lists(file_processor, choosen_column, order_by=order)
+        
+    print(sorted_list)
    
     
     
@@ -49,53 +51,51 @@ def prompt_filter(file_processor):
     print(file_processor.columns)
     
     choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT, file_processor.columns)
-    column_data = file_processor.getColumnDataByName(choosen_column)
-    print(file_processor.columns_type)
-    column_type = file_processor.columns_type[choosen_column]
+    column_type = file_processor.getColumnTypeByName(choosen_column)
 
     if column_type is str:
-        filtered_list = get_filtered_string_list_from_prompt(file_processor, column_data, choosen_column)
+        filtered_list = get_filtered_string_list_from_prompt(file_processor, choosen_column)
 
     elif column_type is list:
-        filtered_list = get_filtered_lists_from_prompt(file_processor, column_data)
+        filtered_list = get_filtered_lists_from_prompt(file_processor, choosen_column)
         
     elif column_type is int:
-        filtered_list = get_filtered_ints_list_from_prompt(file_processor, column_data)
+        filtered_list = get_filtered_ints_list_from_prompt(file_processor, choosen_column)
         
     print(filtered_list)
 
 
 
-
-def get_filtered_ints_list_from_prompt(file_processor, column_data):
+def get_filtered_ints_list_from_prompt(file_processor, column_name):
     filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
-    return filter_on_ints(column_data, filter_operation)
+    return filter_on_ints(file_processor, column_name, filter_operation)
 
 
 
 
-def get_filtered_lists_from_prompt(file_processor, column_data):
+def get_filtered_lists_from_prompt(file_processor, column_name):
     filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=3) 
-    return filter_on_list(file_processor.type, column_data, filter_operation)
+    return filter_on_list(file_processor, column_name, filter_operation)
 
 
 
 
-def get_filtered_string_list_from_prompt(file_processor, column_data, choosen_column):
+def get_filtered_string_list_from_prompt(file_processor, choosen_column):
     filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
         
     if filter_type == 1: # filter on one column
         filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT, valid_operation_numbers=4)
-        choosen_filter_word = input("Mot à utiliser pour le filtre : ")
-        return filter_on_strings_by_search(column_data, choosen_filter_word, filter_operation)
+        
+        return filter_on_strings_by_search(file_processor, choosen_column, filter_operation)
+        
         
     elif filter_type == 2: # filter by comparing 2 columns
         comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column)
         print(comparable_column_names)
-        second_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
-        second_column_data = file_processor.getColumnDataByName(second_column)
-        filter_comparison_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
-        return filter_on_strings_by_comparison(column_data, second_column_data, filter_comparison_operation)
+        second__choosen_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
+        filter_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
+        
+        return filter_on_strings_by_comparison(file_processor, choosen_column, second__choosen_column, filter_operation)
 
 
 

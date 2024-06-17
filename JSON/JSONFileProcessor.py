@@ -74,6 +74,9 @@ class JSONFileProcessor:
     def getColumnDataByName(self, column_name):
         return [item for item in self.columns_data[column_name]]
     
+    def getColumnTypeByName(self, column_name):
+        return self.columns_type[column_name]
+    
     def getColumnsNameByType(self, type):
         return [column for column, column_type in self.columns_type.items() if column_type == type]
     
