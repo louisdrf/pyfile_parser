@@ -6,7 +6,7 @@ ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre
 WHICH_FILTER_TYPE_APPLY_PROMPT = "Quel type de filtre appliquer ? \n1 - Recherche dans une colonne \n2 - Comparaison entre colonnes\n-> "
 WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT = "Quel filtre appliquer ? \n1 - contient  \n2 - commence par  \n3 - se termine par  \n4 - mots de même taille \n-> "
 WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT = "Quel filtre appliquer ? \n1 - par nombre d'élements  \n2 - taille minimum  \n3 - taille maximum\n4 - de taille moyenne\n5 - moins de la taille moyenne\n6 - plus de la taille moyenne\n-> "
-WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel filtre appliquer ? \n1 - moins que la moyenne\n2 - plus que la moyenne\n3 - dans la moyenne\n4 - est inférieur à\n5 - est supérieur à\n6 - est égal à\n-> "
+WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel filtre appliquer ? \n1 - moins que la moyenne\n2 - plus que la moyenne\n3 - dans la moyenne\n4 - 25% plus haut\n5 - 25% plus bas\n6 - est inférieur à\n7 - est supérieur à\n8 - est égal à\n-> "
 WHICH_FILTER_TYPE_APPLY_ON_BOOLEAN_PROMPT = "Quel filtre appliquer ? \n1 - valeurs vraies \n2 - valeurs fausses \n-> "
 WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
@@ -78,7 +78,7 @@ def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
     filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
 
     if filter_type == 1:
-        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=6) 
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=8) 
         return filter_on_numbers_by_search(file_processor, choosen_column, filter_operation)
     else:
         comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(int, choosen_column)

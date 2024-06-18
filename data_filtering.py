@@ -84,11 +84,21 @@ def filter_on_numbers_by_search(file_processor, column_name, operation):
     elif operation == 3: # dans la moyenne
         return [row for row in file_processor.content if round(float(row[column_name])) == round(average)]
     
+    elif operation == 4:  # 25% plus haut
+        sorted_data = sorted(file_processor.content, key=lambda row: float(row[column_name]), reverse=True)
+        total_rows = len(sorted_data)
+        return sorted_data[:int(0.25 * total_rows)]
+    
+    elif operation == 5: # 25% plus bas
+        sorted_data = sorted(file_processor.content, key=lambda row: float(row[column_name]))
+        total_rows = len(sorted_data)
+        return sorted_data[:int(0.25 * total_rows)]
+    
     else:
         value_to_compare_with = float(input("Valeur pour la comparaison : "))
-        if operation == 4 : # inférieur à 
+        if operation == 6: # inférieur à 
             return [row for row in file_processor.content if float(row[column_name]) < value_to_compare_with]
-        elif operation == 5 : # supérieur à 
+        elif operation == 7: # supérieur à 
             return [row for row in file_processor.content if float(row[column_name]) > value_to_compare_with]
         else: # égal à
             return [row for row in file_processor.content if float(row[column_name]) == value_to_compare_with]
