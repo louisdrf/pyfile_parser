@@ -15,10 +15,8 @@ def get_json_data_type(value):
         return str
     elif isinstance(value, bool):
         return bool
-    elif isinstance(value, int):
+    elif isinstance(value, int) or isinstance(value, float):
         return int
-    elif isinstance(value, float):
-        return float
     elif isinstance(value, list):
         return list
     else:

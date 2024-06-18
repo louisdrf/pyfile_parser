@@ -1,5 +1,5 @@
 from data_sorting import sort_numbers, sort_lists, sort_strings
-from data_filtering import filter_on_ints, filter_on_list, filter_on_strings_by_search, filter_on_strings_by_comparison
+from data_filtering import filter_on_numbers, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
 
 
 ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
@@ -8,8 +8,8 @@ WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT = "Quel type de filtre appliquer ? \n1 
 WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT = "Quel type de filtre appliquer ? \n1 - nombre d'élements  \n2 - minimum  \n3 - maximum\n-> "
 WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel type de filtre appliquer ? \n1 - moins que la moyenne\n2 - plus que la moyenne\n-> "
 WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "
-WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
-
+WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
+WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_NUMBERS_PROMPT = "Quel type de comparaison appliquer ? \n1 - est inférieur  \n2 - est supérieur  \n3 - est égal \n-> "
 
 def prompt_user(file_processor):
     choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=3)
@@ -60,22 +60,32 @@ def prompt_filter(file_processor):
         filtered_list = get_filtered_lists_from_prompt(file_processor, choosen_column)
         
     elif column_type is int:
-        filtered_list = get_filtered_ints_list_from_prompt(file_processor, choosen_column)
+        filtered_list = get_filtered_numbers_list_from_prompt(file_processor, choosen_column)
         
     print(filtered_list)
 
 
 
-def get_filtered_ints_list_from_prompt(file_processor, column_name):
-    filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
-    return filter_on_ints(file_processor, column_name, filter_operation)
+def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
+    filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
 
+    if filter_type == 1:
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=2) 
+        return filter_on_numbers(file_processor, choosen_column, filter_operation)
+    else:
+        comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(int, choosen_column)
+        print(comparable_column_names)
+        second_choosen_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
+        filter_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_NUMBERS_PROMPT, valid_operation_numbers=3)
+
+        return filter_on_numbers_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
 
 
 
 def get_filtered_lists_from_prompt(file_processor, column_name):
     filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=3) 
     return filter_on_list(file_processor, column_name, filter_operation)
+
 
 
 
@@ -92,10 +102,10 @@ def get_filtered_string_list_from_prompt(file_processor, choosen_column):
     elif filter_type == 2: # filter by comparing 2 columns
         comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(str, choosen_column)
         print(comparable_column_names)
-        second__choosen_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
-        filter_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_PROMPT, valid_operation_numbers=3)
+        second_choosen_column = column_name_input("Par rapport à quelle colonne faire la comparaison ?\n-> ", comparable_column_names)
+        filter_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT, valid_operation_numbers=3)
         
-        return filter_on_strings_by_comparison(file_processor, choosen_column, second__choosen_column, filter_operation)
+        return filter_on_strings_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
 
 
 

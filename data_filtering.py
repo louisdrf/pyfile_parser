@@ -53,7 +53,7 @@ def filter_on_list(file_processor, column_name, operation):
     
     
 
-def filter_on_ints(file_processor, column_name, operation):
+def filter_on_numbers(file_processor, column_name, operation):
     
     column_data = [float(val) for val in file_processor.getColumnDataByName(column_name)]
     average = float(sum(column_data) / len(column_data))
@@ -67,16 +67,20 @@ def filter_on_ints(file_processor, column_name, operation):
     
 
 
-def filter_on_ints_by_comparison(first_number_list, second_number_list, operation):
-    first_number_list = [float(val) for val in first_number_list]
-    second_number_list = [float(val) for val in second_number_list]
+def filter_on_numbers_by_comparison(file_processor, first_column_name, second_column_name, operation):
+    first_column_data = file_processor.getColumnDataByName(first_column_name)
+    second_column_data = file_processor.getColumnDataByName(second_column_name)
+    
+    if len(first_column_data) != len(second_column_data):
+        raise ValueError("Les listes à comparer doivent avoir la même longueur.")
+    
 
     if operation == 1:  # first number smaller than second one
-        return [first for first, second in zip(first_number_list, second_number_list) if first < second]
+        return [row for row in file_processor.content if row[first_column_name] < row[second_column_name]]
     
-    if operation == 2:  # first number bgger than second one
-        return [first for first, second in zip(first_number_list, second_number_list) if first > second]
+    if operation == 2:  # first number bigger than second one
+        return [row for row in file_processor.content if row[first_column_name] > row[second_column_name]]
     
-    if operation == 3:  # first number bigger than second one
-        return [first for first, second in zip(first_number_list, second_number_list) if first == second]
+    if operation == 3:  # first and second number are the same
+        return [row for row in file_processor.content if row[first_column_name] == row[second_column_name]]
         
