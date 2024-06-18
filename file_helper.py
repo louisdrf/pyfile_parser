@@ -72,7 +72,10 @@ def multiple_string_values_to_boolean(string_booleans_list):
     return [convert_to_boolean(string_bool) for string_bool in string_booleans_list]
 
 
-def multiple_string_values_to_list(separated_values):
+def toList(separated_values):
+    if isinstance(separated_values, list):
+        return separated_values
+    
     try:
         value = eval(separated_values)
     except (ValueError, SyntaxError):

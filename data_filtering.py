@@ -1,4 +1,4 @@
-from file_helper import multiple_string_values_to_list
+from file_helper import toList
 
 def filter_on_booleans_by_search(file_processor, column_name, operation):
     if operation == 1:
@@ -43,19 +43,19 @@ def filter_on_strings_by_comparison(file_processor, first_column_name, second_co
     
 def filter_on_list(file_processor, column_name, operation):
     if file_processor.type == 'csv':
-            column_data = [multiple_string_values_to_list(l) for l in column_data]
-
+            column_data = [toList(l) for l in file_processor.getColumnDataByName(column_name)]
+            
     if operation == 1:   # nombre d'élements
         number = int(input("Nombre voulu d'éléments dans chaque liste : "))        
-        return [l for l in column_data if len(l) == number]
+        return [row for row in file_processor.content if len(toList(row[column_name])) == number]
 
     elif operation == 2: # minimum
         minimum_elem = min(len(liste) for liste in column_data)
-        return [l for l in column_data if len(l) == minimum_elem]
+        return [row for row in file_processor.content if len(toList(row[column_name])) == minimum_elem]
 
     elif operation == 3: # maximum
         maximum_elem = max(len(liste) for liste in column_data)
-        return [l for l in column_data if len(l) == maximum_elem]
+        return [row for row in file_processor.content if len(toList(row[column_name])) == maximum_elem]
 
     
     
