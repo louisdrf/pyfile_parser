@@ -60,6 +60,14 @@ def filter_on_list(file_processor, column_name, operation):
     elif operation == 4: # de taille moyenne
         average = round(get_average_list_size(column_data))
         return [row for row in file_processor.content if len(toList(row[column_name])) == average]
+    
+    elif operation == 5: # moins de la taille moyenne
+        average = round(get_average_list_size(column_data))
+        return [row for row in file_processor.content if len(toList(row[column_name])) < average]
+    
+    elif operation == 6: # plus de la taille moyenne
+        average = round(get_average_list_size(column_data))
+        return [row for row in file_processor.content if len(toList(row[column_name])) > average]
 
     
     
@@ -73,12 +81,14 @@ def filter_on_numbers_by_search(file_processor, column_name, operation):
         return [row for row in file_processor.content if float(row[column_name]) < average]
     elif operation == 2: # plus que la moyenne
         return [row for row in file_processor.content if float(row[column_name]) > average]
+    elif operation == 3: # dans la moyenne
+        return [row for row in file_processor.content if round(float(row[column_name])) == round(average)]
     
     else:
         value_to_compare_with = float(input("Valeur pour la comparaison : "))
-        if operation == 3 : # inférieur à 
+        if operation == 4 : # inférieur à 
             return [row for row in file_processor.content if float(row[column_name]) < value_to_compare_with]
-        elif operation == 4 : # supérieur à 
+        elif operation == 5 : # supérieur à 
             return [row for row in file_processor.content if float(row[column_name]) > value_to_compare_with]
         else: # égal à
             return [row for row in file_processor.content if float(row[column_name]) == value_to_compare_with]

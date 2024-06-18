@@ -48,9 +48,9 @@ class CSVFileProcessor:
     
     def showColumns(self):
         print(f"Composées de nombres : {self.getColumnsNameByType(int)}")
-        print(f"Composées de chaînes de caractères : {self.getColumnsNameByType(str)}")
-        print(f"Composées de booléens : {self.getColumnsNameByType(bool)}")
-        print(f"Composées de listes : {self.getColumnsNameByType(list)}")
+        print(f"\nComposées de chaînes de caractères : {self.getColumnsNameByType(str)}")
+        print(f"\nComposées de booléens : {self.getColumnsNameByType(bool)}")
+        print(f"\nComposées de listes : {self.getColumnsNameByType(list)}")
      
         
     def getColumnDataByName(self, columnName):
