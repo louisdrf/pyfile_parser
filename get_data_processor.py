@@ -1,3 +1,4 @@
+import sys
 from CSV.CSVFileProcessor import CSVFileProcessor
 from JSON.JSONFileProcessor import JSONFileProcessor
 
@@ -12,5 +13,7 @@ def get_data_processor(file_name, file_type):
     
     except FileNotFoundError:
         print(f"Erreur : Le fichier '{file_name}' n'a pas été trouvé.")
+        sys.exit(1)
     except IOError:
         print(f"Erreur : Problème de lecture du fichier '{file_name}'.")
+        sys.exit(1)

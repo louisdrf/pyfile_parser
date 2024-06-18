@@ -1,5 +1,5 @@
 from data_sorting import sort_numbers, sort_lists, sort_strings
-from data_filtering import filter_on_numbers, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
+from data_filtering import filter_on_numbers_by_search, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
 
 
 ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
@@ -71,7 +71,7 @@ def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
 
     if filter_type == 1:
         filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT, valid_operation_numbers=5) 
-        return filter_on_numbers(file_processor, choosen_column, filter_operation)
+        return filter_on_numbers_by_search(file_processor, choosen_column, filter_operation)
     else:
         comparable_column_names = file_processor.getColumnsNameByTypeExcludingOne(int, choosen_column)
         print(comparable_column_names)

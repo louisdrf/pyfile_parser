@@ -1,16 +1,16 @@
 from file_helper import multiple_string_values_to_list
 
 def filter_on_strings_by_search(file_processor, column_name, operation):
-    value_to_compare_wtih = input("Mot à utiliser pour filtrer : ")
+    value_to_compare_with = input("Mot à utiliser pour filtrer : ")
     
     if operation == 1:   # contains
-        return [row for row in file_processor.content if value_to_compare_wtih in row[column_name]]
+        return [row for row in file_processor.content if value_to_compare_with in row[column_name]]
     elif operation == 2: # startswith
-        return [row for row in file_processor.content if row[column_name].startswith(value_to_compare_wtih)]
+        return [row for row in file_processor.content if row[column_name].startswith(value_to_compare_with)]
     elif operation == 3: # endswith
-        return [row for row in file_processor.content if row[column_name].endswith(value_to_compare_wtih)]
+        return [row for row in file_processor.content if row[column_name].endswith(value_to_compare_with)]
     elif operation == 4: # size
-        return [row for row in file_processor.content if len(row[column_name]) == len(value_to_compare_wtih)]        
+        return [row for row in file_processor.content if len(row[column_name]) == len(value_to_compare_with)]        
     
     
    
@@ -34,7 +34,6 @@ def filter_on_strings_by_comparison(file_processor, first_column_name, second_co
     
     
 def filter_on_list(file_processor, column_name, operation):
-    column_data = file_processor.getColumnDataByName(column_name)
     if file_processor.type == 'csv':
             column_data = [multiple_string_values_to_list(l) for l in column_data]
 
@@ -53,25 +52,22 @@ def filter_on_list(file_processor, column_name, operation):
     
     
 
-def filter_on_numbers(file_processor, column_name, operation):
+def filter_on_numbers_by_search(file_processor, column_name, operation):
     
     column_data = [float(val) for val in file_processor.getColumnDataByName(column_name)]
     average = float(sum(column_data) / len(column_data))
     
     if operation == 1:   # moins que la moyenne
         return [row for row in file_processor.content if float(row[column_name]) < average]
-
     elif operation == 2: # plus que la moyenne
         return [row for row in file_processor.content if float(row[column_name]) > average]
     
     else:
-        value_to_compare_with = int(input("Valeur pour la comparaison : "))
+        value_to_compare_with = float(input("Valeur pour la comparaison : "))
         if operation == 3 : # inférieur à 
             return [row for row in file_processor.content if float(row[column_name]) < value_to_compare_with]
-        
         elif operation == 4 : # supérieur à 
             return [row for row in file_processor.content if float(row[column_name]) > value_to_compare_with]
-        
         else: # égal à
             return [row for row in file_processor.content if float(row[column_name]) == value_to_compare_with]
         
