@@ -63,8 +63,19 @@ def filter_on_numbers(file_processor, column_name, operation):
 
     elif operation == 2: # plus que la moyenne
         return [row for row in file_processor.content if float(row[column_name]) > average]
-
     
+    else:
+        value_to_compare_with = int(input("Valeur pour la comparaison : "))
+        if operation == 3 : # inférieur à 
+            return [row for row in file_processor.content if float(row[column_name]) < value_to_compare_with]
+        
+        elif operation == 4 : # supérieur à 
+            return [row for row in file_processor.content if float(row[column_name]) > value_to_compare_with]
+        
+        else: # égal à
+            return [row for row in file_processor.content if float(row[column_name]) == value_to_compare_with]
+        
+
 
 
 def filter_on_numbers_by_comparison(file_processor, first_column_name, second_column_name, operation):
