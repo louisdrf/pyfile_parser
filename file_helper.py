@@ -87,3 +87,11 @@ def toList(separated_values):
             value = value.split(sep)
 
     return value
+
+
+def get_average_list_size(lists):
+    lists_size = [len(l) for l in lists]
+    number_of_lists = len(lists)
+    total_lists_size = sum(lists_size)
+    
+    return float(total_lists_size / number_of_lists)

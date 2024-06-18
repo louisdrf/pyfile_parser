@@ -1,4 +1,4 @@
-from file_helper import toList
+from file_helper import toList, get_average_list_size
 
 def filter_on_booleans_by_search(file_processor, column_name, operation):
     if operation == 1:
@@ -56,6 +56,10 @@ def filter_on_list(file_processor, column_name, operation):
     elif operation == 3: # maximum
         maximum_elem = max(len(liste) for liste in column_data)
         return [row for row in file_processor.content if len(toList(row[column_name])) == maximum_elem]
+    
+    elif operation == 4: # de taille moyenne
+        average = round(get_average_list_size(column_data))
+        return [row for row in file_processor.content if len(toList(row[column_name])) == average]
 
     
     
