@@ -69,7 +69,13 @@ class JSONFileProcessor:
                         columns_type[column] = column_type
                     else:
                         pass
-                 
+     
+    def showColumns(self):
+        print(f"Composées de nombres : {self.getColumnsNameByType(int)}")
+        print(f"Composées de chaînes de caractères : {self.getColumnsNameByType(str)}")
+        print(f"Composées de booléens : {self.getColumnsNameByType(bool)}")
+        print(f"Composées de listes : {self.getColumnsNameByType(list)}")
+                    
                     
     def getColumnDataByName(self, column_name):
         return [item for item in self.columns_data[column_name]]

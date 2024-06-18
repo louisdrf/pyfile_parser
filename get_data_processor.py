@@ -1,6 +1,6 @@
 import sys
-from CSV.CSVFileProcessor import CSVFileProcessor
-from JSON.JSONFileProcessor import JSONFileProcessor
+from file_processors.CSVFileProcessor import CSVFileProcessor
+from file_processors.JSONFileProcessor import JSONFileProcessor
 
 def get_data_processor(file_name, file_type):
     try:

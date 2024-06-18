@@ -24,8 +24,8 @@ def prompt_user(file_processor):
         
         
 def prompt_sort(file_processor):
-    print("Liste des colonnes : ")
-    print(file_processor.columns)
+    print("Listes des colonnes : ")
+    file_processor.showColumns()
     
     choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT, file_processor.columns)
         
@@ -47,8 +47,8 @@ def prompt_sort(file_processor):
     
         
 def prompt_filter(file_processor):
-    print("Liste des colonnes : ")
-    print(file_processor.columns)
+    print("Listes des colonnes : ")
+    file_processor.showColumns()
     
     choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT, file_processor.columns)
     column_type = file_processor.getColumnTypeByName(choosen_column)

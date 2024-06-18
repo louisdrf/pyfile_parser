@@ -46,12 +46,15 @@ class CSVFileProcessor:
             self.columns_type[column] = get_data_type(col_elems)
             
     
-    def getColumnDataByName(self, columnName):
-        if columnName not in self.columns:
-            raise ValueError(f"La colonne '{columnName}' n'existe pas dans le fichier.")
+    def showColumns(self):
+        print(f"Composées de nombres : {self.getColumnsNameByType(int)}")
+        print(f"Composées de chaînes de caractères : {self.getColumnsNameByType(str)}")
+        print(f"Composées de booléens : {self.getColumnsNameByType(bool)}")
+        print(f"Composées de listes : {self.getColumnsNameByType(list)}")
+     
         
+    def getColumnDataByName(self, columnName):
         return [row[columnName] for row in self.content]
-    
     
     def getColumnTypeByName(self, column_name):
         return self.columns_type[column_name]
