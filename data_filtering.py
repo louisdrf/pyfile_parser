@@ -1,5 +1,13 @@
 from file_helper import multiple_string_values_to_list
 
+def filter_on_booleans_by_search(file_processor, column_name, operation):
+    if operation == 1:
+        return [row for row in file_processor.content if row[column_name] == True]
+    else:
+        return [row for row in file_processor.content if row[column_name] == False]
+    
+    
+
 def filter_on_strings_by_search(file_processor, column_name, operation):
     value_to_compare_with = input("Mot à utiliser pour filtrer : ")
     

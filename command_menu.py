@@ -1,12 +1,13 @@
 from data_sorting import sort_numbers, sort_lists, sort_strings
-from data_filtering import filter_on_numbers_by_search, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
+from data_filtering import filter_on_booleans_by_search, filter_on_numbers_by_search, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
 
 
 ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
 WHICH_FILTER_TYPE_APPLY_PROMPT = "Quel type de filtre appliquer ? \n1 - Recherche dans une colonne \n2 - Comparaison entre colonnes\n-> "
-WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT = "Quel type de filtre appliquer ? \n1 - contient  \n2 - commence par  \n3 - se termine par  \n4 - mots de même taille \n-> "
-WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT = "Quel type de filtre appliquer ? \n1 - nombre d'élements  \n2 - minimum  \n3 - maximum\n-> "
-WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel type de filtre appliquer ? \n1 - moins que la moyenne\n2 - plus que la moyenne\n3 - est inférieur à\n4 - est supérieur à\n5 - est égal à\n-> "
+WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT = "Quel filtre appliquer ? \n1 - contient  \n2 - commence par  \n3 - se termine par  \n4 - mots de même taille \n-> "
+WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT = "Quel filtre appliquer ? \n1 - nombre d'élements  \n2 - minimum  \n3 - maximum\n-> "
+WHICH_FILTER_TYPE_APPLY_ON_NUMBER_PROMPT = "Quel filtre appliquer ? \n1 - moins que la moyenne\n2 - plus que la moyenne\n3 - est inférieur à\n4 - est supérieur à\n5 - est égal à\n-> "
+WHICH_FILTER_TYPE_APPLY_ON_BOOLEAN_PROMPT = "Quel filtre appliquer ? \n1 - valeurs vraies \n2 - valeurs fausses \n-> "
 WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_NUMBERS_PROMPT = "Quel type de comparaison appliquer ? \n1 - est inférieur  \n2 - est supérieur  \n3 - est égal \n-> "
@@ -35,11 +36,11 @@ def prompt_sort(file_processor):
     if column_type is int or column_type is float:
         sorted_list = sort_numbers(file_processor, choosen_column, order_by=order)
         
-    if column_type is str:
+    elif column_type is str:
         sorted_list = sort_strings(file_processor, choosen_column, order_by=order)
         
     elif column_type is list:
-        sorted_list = sort_lists(file_processor, choosen_column, order_by=order)
+        sorted_list = sort_lists(file_processor, choosen_column, order_by=order)    
         
     print(sorted_list)
    
@@ -62,8 +63,15 @@ def prompt_filter(file_processor):
     elif column_type is int:
         filtered_list = get_filtered_numbers_list_from_prompt(file_processor, choosen_column)
         
+    elif column_type is bool:
+        filtered_list = get_filtered_booleans_list_from_prompt(file_processor, choosen_column)
+        
     print(filtered_list)
 
+
+def get_filtered_booleans_list_from_prompt(file_processor, choosen_column):
+        filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_BOOLEAN_PROMPT, valid_operation_numbers=2) 
+        return filter_on_booleans_by_search(file_processor, choosen_column, filter_operation)
 
 
 def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
