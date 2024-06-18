@@ -1,4 +1,4 @@
-from data_sorting import sort_numbers, sort_lists
+from data_sorting import sort_numbers, sort_lists, sort_strings
 from data_filtering import filter_on_ints, filter_on_list, filter_on_strings_by_search, filter_on_strings_by_comparison
 
 
@@ -34,6 +34,9 @@ def prompt_sort(file_processor):
     
     if column_type is int or column_type is float:
         sorted_list = sort_numbers(file_processor, choosen_column, order_by=order)
+        
+    if column_type is str:
+        sorted_list = sort_strings(file_processor, choosen_column, order_by=order)
         
     elif column_type is list:
         sorted_list = sort_lists(file_processor, choosen_column, order_by=order)
