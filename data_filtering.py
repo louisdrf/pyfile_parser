@@ -1,10 +1,10 @@
-from file_helper import toList, get_average_list_size
+from file_helper import convert_to_boolean, toList, get_average_list_size
 
 def filter_on_booleans_by_search(file_processor, column_name, operation):
     if operation == 1:
-        return [row for row in file_processor.content if row[column_name] == True]
+        return [row for row in file_processor.content if convert_to_boolean(row[column_name]) == True]
     else:
-        return [row for row in file_processor.content if row[column_name] == False]
+        return [row for row in file_processor.content if convert_to_boolean(row[column_name]) == False]
     
     
 

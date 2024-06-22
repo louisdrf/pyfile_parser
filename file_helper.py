@@ -55,9 +55,9 @@ def is_float(value):
 
 
 def convert_to_boolean(value):
-    if value in {"true", "1"}:
+    if value in {"true", "1", True}:
         return True
-    elif value in {"false", "0"}:
+    elif value in {"false", "0", False}:
         return False
     else:
         raise ValueError(f"Cannot convert value '{value}' to boolean")
