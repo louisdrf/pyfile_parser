@@ -1,8 +1,11 @@
+import sys
 from data_sorting import sort_numbers, sort_lists, sort_strings
 from data_filtering import filter_on_booleans_by_search, filter_on_numbers_by_search, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
 
 
-ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
+ON_WHICH_COLUMN_APPLY_FILTER_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
+ON_WHICH_COLUMN_APPLY_SORT_PROMPT = "Sur quelle colonne appliquer le tri ?\n-> "
+
 WHICH_FILTER_TYPE_APPLY_PROMPT = "Quel type de filtre appliquer ? \n1 - Recherche dans une colonne \n2 - Comparaison entre colonnes\n-> "
 WHICH_FILTER_TYPE_APPLY_ON_STRING_PROMPT = "Quel filtre appliquer ? \n1 - contient  \n2 - commence par  \n3 - se termine par  \n4 - mots de même taille \n-> "
 WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT = "Quel filtre appliquer ? \n1 - par nombre d'élements  \n2 - taille minimum  \n3 - taille maximum\n4 - de taille moyenne\n5 - moins de la taille moyenne\n6 - plus de la taille moyenne\n-> "
@@ -13,13 +16,17 @@ WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT = "Quel type de comparais
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_NUMBERS_PROMPT = "Quel type de comparaison appliquer ? \n1 - est inférieur  \n2 - est supérieur  \n3 - est égal \n-> "
 
 def prompt_user(file_processor):
-    choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=3)
+    choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n4 - Quitter\n-> ", valid_operation_numbers=4)
     if choice == 1:
         prompt_filter(file_processor)
     elif choice == 2:
         prompt_sort(file_processor)  
     elif choice == 3:
         file_processor.displayFileStatistics()
+    elif choice == 4:
+        print("Fin de programme.")
+        sys.exit(0)
+        
         
         
         
@@ -28,7 +35,7 @@ def prompt_sort(file_processor):
     print("Listes des colonnes : ")
     file_processor.showColumns()
     
-    choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT, file_processor.columns)
+    choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_SORT_PROMPT, file_processor.columns)
         
     column_type = file_processor.getColumnTypeByName(choosen_column)
     order = get_sort_order_from_input(operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=2))
@@ -43,6 +50,11 @@ def prompt_sort(file_processor):
         sorted_file_processor = sort_lists(file_processor, choosen_column, order_by=order)    
         
     print(sorted_file_processor.content)
+    user_action = int(input("Appliquer un nouveau tri ?\n1 - oui \n2 - non\n-> "))
+    if user_action == 1:
+        prompt_sort(sorted_file_processor)
+    elif user_action == 2:
+        prompt_user(file_processor)
    
    
    
@@ -53,7 +65,7 @@ def prompt_filter(file_processor):
     print("Listes des colonnes : ")
     file_processor.showColumns()
     
-    choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT, file_processor.columns)
+    choosen_column = column_name_input(ON_WHICH_COLUMN_APPLY_FILTER_PROMPT, file_processor.columns)
     column_type = file_processor.getColumnTypeByName(choosen_column)
 
     if column_type is str:
