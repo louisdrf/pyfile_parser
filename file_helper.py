@@ -1,3 +1,5 @@
+import csv
+import json
 from error_types import NoExtensionError, UnsupportedFileTypeError
   
 def getFileType(file_name):
@@ -95,3 +97,22 @@ def get_average_list_size(lists):
     total_lists_size = sum(lists_size)
     
     return float(total_lists_size / number_of_lists)
+
+
+def save_result_into_file(file_name, file_type, result_list):
+    fieldnames = result_list[0].keys()
+
+    if file_type == 1: # CSV
+        with open(file_name, 'w', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            
+            writer.writeheader()
+            
+            for row in result_list:
+                writer.writerow(row)
+
+    elif file_type == 2: # Json
+            with open(file_name, 'w') as jsonfile:
+                json.dump(result_list, jsonfile, indent=4)
+    
+    print(f"Data has been saved to {file_name}")

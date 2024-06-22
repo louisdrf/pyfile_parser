@@ -1,5 +1,6 @@
 from data_sorting import sort_numbers, sort_lists, sort_strings
 from data_filtering import filter_on_booleans_by_search, filter_on_numbers_by_search, filter_on_list, filter_on_numbers_by_comparison, filter_on_strings_by_search, filter_on_strings_by_comparison
+from file_helper import save_result_into_file
 
 
 ON_WHICH_COLUMN_APPLY_OPERATION_PROMPT = "Sur quelle colonne appliquer le filtre ?\n-> "
@@ -11,6 +12,9 @@ WHICH_FILTER_TYPE_APPLY_ON_BOOLEAN_PROMPT = "Quel filtre appliquer ? \n1 - valeu
 WHICH_ORDER_SORT_DATA_PROMPT = "Dans quel ordre trier les données ?\n1 - croissant\n2 - décroissant\n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT = "Quel type de comparaison appliquer ? \n1 - est avant  \n2 - est après  \n3 - est de même longueur \n-> "
 WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_NUMBERS_PROMPT = "Quel type de comparaison appliquer ? \n1 - est inférieur  \n2 - est supérieur  \n3 - est égal \n-> "
+DO_YOU_WANT_TO_SAVE_THE_RESULT = "Voulez-vous sauvegarder le résultat dans un nouveau fichier ? \n1 - Oui \n2 - Non \n-> "
+CHOOSE_OUTPUT_FILE_NAME = "Rentrez le nom du fichier dans lequel vous voulez enregistrer les données\n-> "
+CHOOSE_OUTPUT_FILE_TYPE = "Choisissez le format du fichier de sortie \n1 - CSV \n2 - JSON \n-> "
 
 def prompt_user(file_processor):
     choice = operation_number_input("1 - Filtrer \n2 - Trier \n3 - Statistiques \n-> ", valid_operation_numbers=3)
@@ -43,7 +47,7 @@ def prompt_sort(file_processor):
         sorted_list = sort_lists(file_processor, choosen_column, order_by=order)    
         
     print(sorted_list)
-   
+    save_result_input(DO_YOU_WANT_TO_SAVE_THE_RESULT, sorted_list)
     
     
         
@@ -67,6 +71,7 @@ def prompt_filter(file_processor):
         filtered_list = get_filtered_booleans_list_from_prompt(file_processor, choosen_column)
         
     print(filtered_list)
+    save_result_input(DO_YOU_WANT_TO_SAVE_THE_RESULT, filtered_list)
 
 
 def get_filtered_booleans_list_from_prompt(file_processor, choosen_column):
@@ -116,6 +121,18 @@ def get_filtered_string_list_from_prompt(file_processor, choosen_column):
         return filter_on_strings_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
 
 
+def save_result_input(input_content, result_list):
+    yes_or_no = operation_number_input(input_content, 2)
+    
+    if yes_or_no == 1:
+        file_type = operation_number_input(CHOOSE_OUTPUT_FILE_TYPE, 2)
+        file_name = input(CHOOSE_OUTPUT_FILE_NAME)
+        
+        while any(char in file_name for char in ":/*%"):
+            print(f"Le fichier ne peut pas contenir :, /, *, % dans son nom")
+            file_name = input(CHOOSE_OUTPUT_FILE_NAME)
+
+        return save_result_into_file(file_name, file_type, result_list)
 
 
 def get_sort_order_from_input(number):
