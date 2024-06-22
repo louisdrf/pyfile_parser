@@ -3,7 +3,8 @@ from file_helper import get_json_data_type
 from getDataStatistics import display_number_statistics, display_bool_statistics, display_list_statistics
 
 class JSONFileProcessor:
-    def __init__(self, file):
+    def __init__(self, filename, file):
+        self.filename= filename
         self.file = file
         self.type = 'json'
         self.columns = []

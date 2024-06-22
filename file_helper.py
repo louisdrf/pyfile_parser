@@ -1,5 +1,6 @@
 from error_types import NoExtensionError, UnsupportedFileTypeError
-  
+
+
 def getFileType(file_name):
     if '.' not in file_name:
         raise NoExtensionError("Le fichier n'a pas d'extension.")

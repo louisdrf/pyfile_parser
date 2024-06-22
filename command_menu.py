@@ -34,15 +34,17 @@ def prompt_sort(file_processor):
     order = get_sort_order_from_input(operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=2))
     
     if column_type is int or column_type is float:
-        sorted_list = sort_numbers(file_processor, choosen_column, order_by=order)
+        sorted_file_processor = sort_numbers(file_processor, choosen_column, order_by=order)
         
     elif column_type is str:
-        sorted_list = sort_strings(file_processor, choosen_column, order_by=order)
+        sorted_file_processor = sort_strings(file_processor, choosen_column, order_by=order)
         
     elif column_type is list:
-        sorted_list = sort_lists(file_processor, choosen_column, order_by=order)    
+        sorted_file_processor = sort_lists(file_processor, choosen_column, order_by=order)    
         
-    print(sorted_list)
+    print(sorted_file_processor.content)
+   
+   
    
     
     
@@ -68,11 +70,9 @@ def prompt_filter(file_processor):
         
     print(filtered_list)
 
-
 def get_filtered_booleans_list_from_prompt(file_processor, choosen_column):
         filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_BOOLEAN_PROMPT, valid_operation_numbers=2) 
         return filter_on_booleans_by_search(file_processor, choosen_column, filter_operation)
-
 
 def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
     filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
@@ -88,15 +88,9 @@ def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
 
         return filter_on_numbers_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
 
-
-
 def get_filtered_lists_from_prompt(file_processor, column_name):
     filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=6) 
     return filter_on_list(file_processor, column_name, filter_operation)
-
-
-
-
 
 def get_filtered_string_list_from_prompt(file_processor, choosen_column):
     filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
@@ -115,9 +109,6 @@ def get_filtered_string_list_from_prompt(file_processor, choosen_column):
         
         return filter_on_strings_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
 
-
-
-
 def get_sort_order_from_input(number):
     if number == 1:
         return "ASC"
@@ -126,8 +117,6 @@ def get_sort_order_from_input(number):
     else:
         raise ValueError(f"Unknown operation number: {number}")
     
-
-
 def operation_number_input(input_content, valid_operation_numbers):
     operation_number = int(input(input_content))
     
@@ -137,8 +126,6 @@ def operation_number_input(input_content, valid_operation_numbers):
         
     return operation_number
         
-
-
 def column_name_input(input_content, columns_list):
     column = input(input_content)
     
