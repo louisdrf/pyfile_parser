@@ -31,7 +31,7 @@ def prompt_user(file_processor):
         
         
         
-def prompt_sort(file_processor):
+def prompt_sort(file_processor, sub_items_to_sort=None):
     print("Listes des colonnes : ")
     file_processor.showColumns()
     
@@ -41,20 +41,22 @@ def prompt_sort(file_processor):
     order = get_sort_order_from_input(operation_number_input(WHICH_ORDER_SORT_DATA_PROMPT, valid_operation_numbers=2))
     
     if column_type is int or column_type is float:
-        sorted_file_processor = sort_numbers(file_processor, choosen_column, order_by=order)
+        sorted_file_processor, sub_items_to_sort = sort_numbers(file_processor, choosen_column, order_by=order, sub_items_to_sort=sub_items_to_sort)
         
     elif column_type is str:
-        sorted_file_processor = sort_strings(file_processor, choosen_column, order_by=order)
+        sorted_file_processor, sub_items_to_sort = sort_strings(file_processor, choosen_column, order_by=order, sub_items_to_sort=sub_items_to_sort)
         
     elif column_type is list:
-        sorted_file_processor = sort_lists(file_processor, choosen_column, order_by=order)    
+        sorted_file_processor, sub_items_to_sort = sort_lists(file_processor, choosen_column, order_by=order, sub_items_to_sort=sub_items_to_sort)    
         
     print(sorted_file_processor.content)
-    user_action = int(input("Appliquer un nouveau tri ?\n1 - oui \n2 - non\n-> "))
-    if user_action == 1:
-        prompt_sort(sorted_file_processor)
-    elif user_action == 2:
-        prompt_user(file_processor)
+    if len(sub_items_to_sort) > 1:    
+        print(f"{len(sub_items_to_sort)} sous-ensembles à re-trier ont été trouvés.")
+        user_action = int(input("Appliquer un nouveau tri ?\n1 - oui \n2 - non\n-> "))
+        if user_action == 1:
+            prompt_sort(sorted_file_processor, sub_items_to_sort)
+        elif user_action == 2:
+            prompt_user(file_processor)
    
    
    
