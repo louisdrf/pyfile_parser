@@ -292,7 +292,7 @@
   {
     "nom": "Dupont",
     "prenom": "Jean",
-    "age": 21,
+    "age": 27,
     "adresse": {
       "rue": "123 Rue Principale",
       "ville": "Paris",
@@ -310,7 +310,7 @@
         "note": 14
       }
     ],
-    "taille": 1.75,
+    "taille": 1.68,
     "admissible": true,
     "moyenneNotes": 14.5,
     "informationsComplementaires": {
@@ -350,7 +350,7 @@
   {
     "nom": "Legrand",
     "prenom": "Pierre",
-    "age": 29,
+    "age": 23,
     "adresse": {
       "rue": "789 Boulevard de la Liberté",
       "ville": "Marseille",
@@ -366,9 +366,14 @@
         "nom": "Philosophie",
         "professeur": "M. Girard",
         "note": 17
+      },
+      {
+        "nom": "Maths",
+        "professeur": "M. Grion",
+        "note": 14
       }
     ],
-    "taille": 1.82,
+    "taille": 1.70,
     "admissible": true,
     "moyenneNotes": 15.5,
     "informationsComplementaires": {
@@ -395,6 +400,11 @@
         "nom": "Informatique",
         "professeur": "Mme. Rousseau",
         "note": 19
+      },
+      {
+        "nom": "Maths",
+        "professeur": "M. Grion",
+        "note": 14
       }
     ],
     "taille": 1.70,

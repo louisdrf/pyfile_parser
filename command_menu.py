@@ -50,8 +50,8 @@ def prompt_sort(file_processor, sub_items_to_sort=None):
         sorted_file_processor, sub_items_to_sort = sort_lists(file_processor, choosen_column, order_by=order, sub_items_to_sort=sub_items_to_sort)    
         
     print(sorted_file_processor.content)
-    if len(sub_items_to_sort) > 1:    
-        print(f"{len(sub_items_to_sort)} sous-ensembles à re-trier ont été trouvés.")
+    if len(sub_items_to_sort) > 0:    
+        print(f"{len(sub_items_to_sort)} sous-ensemble(s) à re-trier trouvé(s).")
         user_action = int(input("Appliquer un nouveau tri ?\n1 - oui \n2 - non\n-> "))
         if user_action == 1:
             prompt_sort(sorted_file_processor, sub_items_to_sort)
