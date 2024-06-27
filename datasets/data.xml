@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book id="1">
+        <title>Effective Python</title>
+        <author>Brian Jones</author>
+        <publisher>O'Reilly Media</publisher>
+        <year>2015</year>
+        <genres>
+            <genre>Programming</genre>
+            <genre>Software Development</genre>
+        </genres>
+        <rating>4.5</rating>
+    </book>
+    <book id="2">
+        <title>Python Cookbook</title>
+        <author>David Beazley</author>
+        <publisher>O'Reilly Media</publisher>
+        <year>2013</year>
+        <genres>
+            <genre>Programming</genre>
+            <genre>Recipes</genre>
+        </genres>
+        <rating>4.7</rating>
+    </book>
+    <book id="3">
+        <title>Learning Python</title>
+        <author>Mark Lutz</author>
+        <publisher>O'Reilly Media</publisher>
+        <year>2013</year>
+        <genres>
+            <genre>Programming</genre>
+            <genre>Education</genre>
+        </genres>
+        <rating>4.3</rating>
+    </book>
+    <book id="4">
+        <title>Fluent Python</title>
+        <author>Luciano Ramalho</author>
+        <publisher>O'Reilly Media</publisher>
+        <year>2015</year>
+        <genres>
+            <genre>Programming</genre>
+            <genre>Advanced</genre>
+        </genres>
+        <rating>4.8</rating>
+    </book>
+    <authors>
+        <author id="1">
+            <name>Brian Jones</name>
+            <nationality>American</nationality>
+            <birth_year>1975</birth_year>
+        </author>
+        <author id="2">
+            <name>David Beazley</name>
+            <nationality>American</nationality>
+            <birth_year>1965</birth_year>
+        </author>
+        <author id="3">
+            <name>Mark Lutz</name>
+            <nationality>American</nationality>
+            <birth_year>1957</birth_year>
+        </author>
+        <author id="4">
+            <name>Luciano Ramalho</name>
+            <nationality>Brazilian</nationality>
+            <birth_year>1970</birth_year>
+        </author>
+    </authors>
+    <publishers>
+        <publisher id="1">
+            <name>O'Reilly Media</name>
+            <country>USA</country>
+            <founded>1978</founded>
+        </publisher>
+        <publisher id="2">
+            <name>Pearson</name>
+            <country>UK</country>
+            <founded>1844</founded>
+        </publisher>
+    </publishers>
+</library>

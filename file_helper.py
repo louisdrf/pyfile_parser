@@ -6,7 +6,7 @@ def getFileType(file_name):
         raise NoExtensionError("Le fichier n'a pas d'extension.")
     
     file_type = file_name.split('.')[-1]
-    if file_type not in ['csv', 'json']:
+    if file_type not in ['csv', 'json', 'xml']:
         raise UnsupportedFileTypeError(f"Le type de fichier '{file_type}' n'est pas pris en charge.")
     return file_type
 
@@ -22,6 +22,27 @@ def get_json_data_type(value):
         return list
     else:
         pass
+    
+
+def get_xml_data_type(value):
+    if isinstance(value, list):
+        return list
+    try:
+        int(value)
+        return int
+    except ValueError:
+        pass
+    
+    try:
+        float(value)
+        return float
+    except ValueError:
+        pass
+    
+    if value.lower() in ['true', 'false']:
+        return bool
+    
+    return str
 
 
 def get_data_type(column):
