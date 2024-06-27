@@ -13,7 +13,7 @@ class XMLFileProcessor:
         self.columns_data = defaultdict(list)
         self.columns_type = {}
         self.content = self.read_file()
-        self.group_columns(self.content)
+        self.group_columns_data(self.content)
         self.group_columns_by_type(self.content)
         
         print(self.columns_data)
@@ -24,28 +24,31 @@ class XMLFileProcessor:
         tree = ET.parse(self.file)
         root = tree.getroot()
         content = []
-        
         for elem in root.findall('.//'):
             row = elem.attrib.copy()
-            for child in elem:
-                row[child.tag] = child.text
+            row.update(self.parse_element(elem))
             content.append(row)
-        
         return content
+
+    def parse_element(self, element):
+        data = {}
+        for child in element:
+            if len(child) > 0:
+                data.update(self.parse_element(child))
+            else:
+                data[child.tag] = child.text
+        return data
     
     def get_columns(self, xml_data):
         for item in xml_data:
-            for column, value in item.items():
+            for column, _ in item.items():
                 if column not in self.columns:
                     self.columns.append(column)
     
-    
-    def group_columns(self, xml_data):
+    def group_columns_data(self, xml_data):
         for item in xml_data:
-            print(item.items())
             for column, value in item.items():
                 self.columns_data[column].append(value)
-                
     
     def group_columns_by_type(self, xml_data):
         for item in xml_data:
