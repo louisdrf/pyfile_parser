@@ -13,7 +13,8 @@ class CSVFileProcessor:
         
         self.setReader()
         self.setColumnsDataType()
-    
+        
+                    
     def displayFileStatistics(self):
         for columnName, columnType in  self.columns_type.items():
             print(columnName)

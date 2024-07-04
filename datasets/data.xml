@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
+<books>
     <book id="1">
         <title>Effective Python</title>
         <author>Brian Jones</author>
@@ -44,6 +45,7 @@
         </genres>
         <rating>4.8</rating>
     </book>
+</books>
     <authors>
         <author id="1">
             <name>Brian Jones</name>

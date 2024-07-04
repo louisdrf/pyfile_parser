@@ -13,7 +13,10 @@ class JSONFileProcessor:
         self.content = json.load(file)
         self.group_columns(self.content)
         self.group_columns_by_type(self.content)
-                
+        
+        
+        print(self.content)
+                        
     
     def displayFileStatistics(self):
         for column_name, column_type in  self.columns_type.items():

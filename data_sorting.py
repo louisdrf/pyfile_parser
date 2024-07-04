@@ -1,5 +1,5 @@
 from collections import defaultdict
-from file_helper import toList
+from file_helper import toFloat, toList
 from get_data_processor import get_data_processor
 
 
@@ -10,11 +10,11 @@ def sort_strings(file_processor, column_name, order_by="ASC", sub_items_to_sort=
     return generic_sort(file_processor, column_name, order_by, sub_items_to_sort, key_func=lambda row, col: row[col])
 
 def sort_numbers(file_processor, column_name, order_by="ASC", sub_items_to_sort=None):
-    return generic_sort(file_processor, column_name, order_by, sub_items_to_sort, key_func=lambda row, col: float(row[col]))
-
+    return generic_sort(file_processor, column_name, order_by, sub_items_to_sort, key_func=lambda row, col: toFloat(row[col]))
 
 
 def generic_sort(file_processor, column_name, order_by="ASC", sub_items_to_sort=None, key_func=lambda row, col: row[col]):
+    print(file_processor.columns_data)
     reverse = order_by != "ASC" 
     if sub_items_to_sort is None: # créer un nouveau file processor avec le contenu trié
         sorted_content = sorted(file_processor.content, key=lambda row: key_func(row, column_name), reverse=reverse)

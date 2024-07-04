@@ -111,6 +111,16 @@ def toList(separated_values):
     return value
 
 
+def toFloat(string_value):
+    if isinstance(string_value, float) or isinstance(string_value, int):
+        return string_value
+    
+    try:
+        return float(string_value)
+    except ValueError:
+        return string_value
+
+
 def get_average_list_size(lists):
     lists_size = [len(l) for l in lists]
     number_of_lists = len(lists)
