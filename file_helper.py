@@ -1,14 +1,13 @@
+from error_types import NoExtensionError, UnsupportedFileTypeError
 import csv
 import json
-from error_types import NoExtensionError, UnsupportedFileTypeError
-
 
 def getFileType(file_name):
     if '.' not in file_name:
         raise NoExtensionError("Le fichier n'a pas d'extension.")
     
     file_type = file_name.split('.')[-1]
-    if file_type not in ['csv', 'json', 'xml']:
+    if file_type not in ['csv', 'json']:
         raise UnsupportedFileTypeError(f"Le type de fichier '{file_type}' n'est pas pris en charge.")
     return file_type
 
@@ -112,15 +111,6 @@ def toList(separated_values):
 
     return value
 
-
-def toFloat(string_value):
-    if isinstance(string_value, float) or isinstance(string_value, int):
-        return string_value
-    
-    try:
-        return float(string_value)
-    except ValueError:
-        return string_value
 
 
 def get_average_list_size(lists):
