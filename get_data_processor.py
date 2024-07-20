@@ -1,6 +1,7 @@
 import sys
 from file_processors.CSVFileProcessor import CSVFileProcessor
 from file_processors.JSONFileProcessor import JSONFileProcessor
+from file_processors.XMLFileProcessor import XMLFileProcessor
 
 def get_data_processor(file_name, file_type):
     try:
@@ -10,6 +11,9 @@ def get_data_processor(file_name, file_type):
         elif file_type == 'json':
             with open(file_name, 'r', encoding='utf-8') as jsonfile:
                 return JSONFileProcessor(file_name, jsonfile)
+        elif file_type == 'xml':
+            with open(file_name, 'r', encoding='utf-8') as xmlfile:
+                return XMLFileProcessor(file_name, xmlfile)
     
     except FileNotFoundError:
         print(f"Erreur : Le fichier '{file_name}' n'a pas été trouvé.")

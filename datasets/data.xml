@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
-<books>
     <book id="1">
         <title>Effective Python</title>
         <author>Brian Jones</author>
@@ -45,39 +44,34 @@
         </genres>
         <rating>4.8</rating>
     </book>
-</books>
-    <authors>
-        <author id="1">
-            <name>Brian Jones</name>
-            <nationality>American</nationality>
-            <birth_year>1975</birth_year>
-        </author>
-        <author id="2">
-            <name>David Beazley</name>
-            <nationality>American</nationality>
-            <birth_year>1965</birth_year>
-        </author>
-        <author id="3">
-            <name>Mark Lutz</name>
-            <nationality>American</nationality>
-            <birth_year>1957</birth_year>
-        </author>
-        <author id="4">
-            <name>Luciano Ramalho</name>
-            <nationality>Brazilian</nationality>
-            <birth_year>1970</birth_year>
-        </author>
-    </authors>
-    <publishers>
-        <publisher id="1">
-            <name>O'Reilly Media</name>
-            <country>USA</country>
-            <founded>1978</founded>
-        </publisher>
-        <publisher id="2">
-            <name>Pearson</name>
-            <country>UK</country>
-            <founded>1844</founded>
-        </publisher>
-    </publishers>
+    <author id="1">
+        <name>Brian Jones</name>
+        <nationality>American</nationality>
+        <birth_year>1975</birth_year>
+    </author>
+    <author id="2">
+        <name>David Beazley</name>
+        <nationality>American</nationality>
+        <birth_year>1965</birth_year>
+    </author>
+    <author id="3">
+        <name>Mark Lutz</name>
+        <nationality>American</nationality>
+        <birth_year>1957</birth_year>
+    </author>
+    <author id="4">
+        <name>Luciano Ramalho</name>
+        <nationality>Brazilian</nationality>
+        <birth_year>1970</birth_year>
+    </author>
+    <publisher id="1">
+        <name>O'Reilly Media</name>
+        <country>USA</country>
+        <founded>1978</founded>
+    </publisher>
+    <publisher id="2">
+        <name>Pearson</name>
+        <country>UK</country>
+        <founded>1844</founded>
+    </publisher>
 </library>

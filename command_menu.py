@@ -60,11 +60,12 @@ def prompt_sort(file_processor, sub_items_to_sort=None):
         if user_action == 1:
             prompt_sort(sorted_file_processor, sub_items_to_sort)
         elif user_action == 2:
+            print(sorted_file_processor.content)
+            save_result_input(DO_YOU_WANT_TO_SAVE_THE_RESULT, sorted_file_processor.content)
             prompt_user(file_processor)
-   
-   
-    print(sorted_file_processor.content)
-    save_result_input(DO_YOU_WANT_TO_SAVE_THE_RESULT, sorted_file_processor.content)
+    else:
+        print(sorted_file_processor.content)
+        save_result_input(DO_YOU_WANT_TO_SAVE_THE_RESULT, sorted_file_processor.content)
     
     
         
@@ -89,10 +90,14 @@ def prompt_filter(file_processor):
         
     print(filtered_list)
     save_result_input(DO_YOU_WANT_TO_SAVE_THE_RESULT, filtered_list)
+    
+    
 
 def get_filtered_booleans_list_from_prompt(file_processor, choosen_column):
         filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_BOOLEAN_PROMPT, valid_operation_numbers=2) 
         return filter_on_booleans_by_search(file_processor, choosen_column, filter_operation)
+    
+    
 
 def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
     filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
@@ -108,9 +113,12 @@ def get_filtered_numbers_list_from_prompt(file_processor, choosen_column):
 
         return filter_on_numbers_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
 
+
+
 def get_filtered_lists_from_prompt(file_processor, column_name):
     filter_operation = operation_number_input(WHICH_FILTER_TYPE_APPLY_ON_LIST_PROMPT, valid_operation_numbers=6) 
     return filter_on_list(file_processor, column_name, filter_operation)
+
 
 def get_filtered_string_list_from_prompt(file_processor, choosen_column):
     filter_type = operation_number_input(WHICH_FILTER_TYPE_APPLY_PROMPT, valid_operation_numbers=2)
@@ -128,6 +136,7 @@ def get_filtered_string_list_from_prompt(file_processor, choosen_column):
         filter_operation = operation_number_input(WHICH_COMPARISON_FILTER_TYPE_TO_APPLY_ON_STRING_PROMPT, valid_operation_numbers=3)
         
         return filter_on_strings_by_comparison(file_processor, choosen_column, second_choosen_column, filter_operation)
+
 
 
 def save_result_input(input_content, result_list):

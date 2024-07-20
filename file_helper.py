@@ -7,7 +7,7 @@ def getFileType(file_name):
         raise NoExtensionError("Le fichier n'a pas d'extension.")
     
     file_type = file_name.split('.')[-1]
-    if file_type not in ['csv', 'json']:
+    if file_type not in ['csv', 'json', 'xml']:
         raise UnsupportedFileTypeError(f"Le type de fichier '{file_type}' n'est pas pris en charge.")
     return file_type
 
